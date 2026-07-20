@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>In Libreville, the Currency of Tomorrow Enters the Lecture Hall — Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A1428; --navy:#0E1B36; --navy2:#132447; --bbs:#1F4E8C;
+  --gold:#C9A227; --gold2:#E8C766; --champ:#F3E7C5; --paper:#F7F4EC;
+  --txt:#E9EDF5; --mut:#93A3BF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--ink);color:var(--txt);overflow-x:hidden}
+::selection{background:var(--gold);color:var(--ink)}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+img{max-width:100%;display:block}
+
+/* ===== fond étoilé / grille ===== */
+.bg-grid{position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(31,78,140,.35), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(201,162,39,.12), transparent 55%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(31,78,140,.25), transparent 60%),
+    var(--ink);}
+.bg-grid::after{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 30%,transparent 75%);}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:5vh 6vw 8vh;perspective:1200px}
+.hero-copy{max-width:660px;position:relative;z-index:3}
+.kicker{display:inline-flex;align-items:center;gap:.7rem;font-size:.68rem;letter-spacing:.32em;font-weight:600;color:var(--gold2);
+  border:1px solid rgba(201,162,39,.4);padding:.55rem 1.1rem;border-radius:99px;backdrop-filter:blur(6px);background:rgba(201,162,39,.06)}
+.kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.hero h1{font-size:clamp(2.6rem,6vw,4.9rem);line-height:1.02;font-weight:700;margin:1.4rem 0 1.1rem;color:#fff}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero .sub{font-size:clamp(.95rem,1.35vw,1.08rem);line-height:1.75;color:var(--mut);max-width:56ch}
+.dateline{margin-top:1.6rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.hero-visual{position:absolute;right:0;bottom:0;top:0;width:52vw;min-width:520px;pointer-events:none;z-index:1}
+.hero-portrait{position:absolute;right:3vw;bottom:0;height:92%;filter:drop-shadow(0 40px 80px rgba(0,0,0,.65)) drop-shadow(0 0 60px rgba(31,78,140,.35));
+  animation:rise 1.4s cubic-bezier(.2,.8,.2,1) both .2s}
+.hero-halo{position:absolute;right:6vw;bottom:6vh;width:34vw;height:34vw;min-width:420px;min-height:420px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%, rgba(232,199,102,.22), rgba(31,78,140,.18) 45%, transparent 70%);
+  filter:blur(4px);animation:pulse 7s ease-in-out infinite}
+.hero-ring{position:absolute;right:5vw;bottom:4vh;width:36vw;height:36vw;min-width:460px;min-height:460px;border-radius:50%;
+  border:1px solid rgba(201,162,39,.35);animation:spin 40s linear infinite}
+.hero-ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
+@keyframes rise{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.06);opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scroll-cue{position:absolute;left:50%;bottom:2.4rem;transform:translateX(-50%);font-size:.62rem;letter-spacing:.4em;color:var(--mut);text-transform:uppercase;z-index:4}
+.scroll-cue::after{content:"";display:block;width:1px;height:44px;background:linear-gradient(var(--gold),transparent);margin:.7rem auto 0;animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ===== pièce 3D ===== */
+.coin-scene{position:absolute;left:47%;top:14%;width:150px;height:150px;perspective:900px;z-index:2;animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.coin{position:absolute;inset:0;transform-style:preserve-3d;animation:coin-spin 9s linear infinite}
+@keyframes coin-spin{to{transform:rotateY(360deg)}}
+.coin .face{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:3.4rem;color:#5d4708;
+  background:radial-gradient(circle at 32% 30%, #F6E7B4, #E3C566 45%, #B8922C 78%, #8a6c1c);
+  box-shadow:inset 0 0 24px rgba(120,90,10,.55);backface-visibility:hidden}
+.coin .face.back{transform:rotateY(180deg) translateZ(10px)}
+.coin .face.front{transform:translateZ(10px)}
+.coin .edge{position:absolute;inset:0;border-radius:50%;transform:translateZ(0);
+  background:conic-gradient(#a37f1e,#e6c766,#a37f1e,#e6c766,#a37f1e);opacity:.9}
+.coin .face::after{content:"";position:absolute;inset:9%;border-radius:50%;border:2px solid rgba(120,90,10,.45)}
+
+/* ===== cubes blockchain isométriques (SVG) ===== */
+.chain-wrap{position:absolute;left:38%;bottom:8%;z-index:2;opacity:.95;animation:floaty 7s ease-in-out infinite reverse}
+
+/* ===== sections ===== */
+section{position:relative;padding:7rem 6vw}
+.container{max-width:1180px;margin:0 auto}
+.sec-head{display:flex;align-items:baseline;gap:1.6rem;margin-bottom:3rem}
+.sec-num{font-family:'Cormorant Garamond',serif;font-size:4.6rem;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(201,162,39,.65);line-height:1}
+.sec-head h2{font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.12}
+.sec-head h2 .gold{color:var(--gold2)}
+.lead-rule{width:64px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:2rem}
+.prose{columns:1;max-width:74ch;font-size:1.02rem;line-height:1.95;color:#C9D3E4}
+.prose p{margin-bottom:1.5rem;text-align:justify}
+.prose p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.6rem;font-weight:700;color:var(--gold2);float:left;line-height:.8;padding:.35rem .8rem 0 0}
+@media(min-width:1000px){.prose.two{columns:2;column-gap:3.4rem;max-width:none}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(42px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+
+/* ===== bandeau faits (3D tilt cards) ===== */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.1rem;margin-top:3.4rem;perspective:1000px}
+.fact{position:relative;border-radius:18px;padding:1.5rem 1.3rem;background:linear-gradient(150deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);transform-style:preserve-3d;transition:transform .5s ease,border-color .5s;}
+.fact:hover{transform:rotateX(7deg) rotateY(-7deg) translateY(-6px);border-color:rgba(201,162,39,.55)}
+.fact b{display:block;font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--gold2);font-weight:700;transform:translateZ(26px)}
+.fact span{font-size:.74rem;line-height:1.55;color:var(--mut);display:block;margin-top:.4rem;transform:translateZ(14px)}
+.fact::after{content:"";position:absolute;inset:0;border-radius:18px;background:radial-gradient(240px 120px at var(--mx,50%) var(--my,0%),rgba(232,199,102,.14),transparent 65%);pointer-events:none}
+
+/* ===== citation ===== */
+.pull{margin:4.5rem auto;max-width:900px;text-align:center;position:relative;padding:0 2rem}
+.pull p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.15rem);font-style:italic;font-weight:600;line-height:1.4;color:var(--champ)}
+.pull::before,.pull::after{content:"◆";color:var(--gold);font-size:.8rem;display:block;margin:1.2rem auto}
+
+/* ===== portrait split ===== */
+.split{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center}
+@media(min-width:960px){.split{grid-template-columns:.92fr 1.08fr}}
+.frame3d{position:relative;perspective:1100px}
+.frame3d .ph{border-radius:22px;overflow:hidden;transform:rotateY(-7deg) rotateX(2deg);transform-style:preserve-3d;
+  box-shadow:30px 45px 90px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12);transition:transform .7s ease}
+.frame3d:hover .ph{transform:rotateY(-2deg)}
+.frame3d::before{content:"";position:absolute;inset:8% -5% -6% 10%;border:1px solid rgba(201,162,39,.5);border-radius:26px;transform:translateZ(-60px)}
+.frame3d .tag{position:absolute;left:-14px;bottom:26px;background:linear-gradient(135deg,var(--gold),#a3801f);color:#171100;
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.7rem 1.2rem;border-radius:10px;
+  box-shadow:0 14px 30px rgba(0,0,0,.5);transform:rotate(-2deg)}
+
+/* ===== timeline 4 jours (cartes 3D) ===== */
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem;perspective:1400px;margin-top:2.6rem}
+.day{position:relative;border-radius:20px;padding:1.9rem 1.6rem 1.7rem;transform-style:preserve-3d;transition:transform .55s ease;
+  background:linear-gradient(160deg,var(--navy2),var(--navy) 65%);border:1px solid rgba(255,255,255,.09)}
+.day:hover{transform:translateY(-10px) rotateX(6deg)}
+.day::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
+  background:linear-gradient(140deg,rgba(232,199,102,.7),transparent 40%,transparent 65%,rgba(31,78,140,.8));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.day .dnum{font-family:'Cormorant Garamond',serif;font-size:2.9rem;font-weight:700;color:var(--gold2);line-height:1;transform:translateZ(24px)}
+.day .dbloom{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bbs);background:rgba(255,255,255,.9);
+  display:inline-block;padding:.32rem .7rem;border-radius:99px;font-weight:700;margin:.8rem 0 .9rem;transform:translateZ(18px)}
+.day h3{font-size:1.18rem;color:#fff;font-weight:700;line-height:1.3;margin-bottom:.7rem;transform:translateZ(14px)}
+.day p{font-size:.83rem;line-height:1.7;color:var(--mut)}
+.day .dur{position:absolute;top:1.4rem;right:1.4rem;font-size:.68rem;color:var(--gold2);letter-spacing:.12em;font-weight:600}
+
+/* ===== compétences hexa ===== */
+.comps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;margin-top:2.6rem}
+.comp{display:flex;gap:1.1rem;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:1.3rem 1.4rem;transition:border-color .4s,transform .4s}
+.comp:hover{border-color:rgba(201,162,39,.5);transform:translateX(6px)}
+.hex{flex:0 0 52px;height:58px;display:flex;align-items:center;justify-content:center;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
+  background:linear-gradient(160deg,var(--gold2),#9a7a1e);color:#191300;font-weight:800;font-size:.95rem;font-family:'Montserrat'}
+.comp b{display:block;color:#fff;font-size:.95rem;margin-bottom:.3rem}
+.comp span{font-size:.82rem;line-height:1.65;color:var(--mut)}
+
+/* ===== galerie ===== */
+.gal{display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem;margin-top:2.6rem}
+.gal figure{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 24px 50px rgba(0,0,0,.45)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.gal figure:hover img{transform:scale(1.06)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.2rem 1.2rem .9rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(6,12,26,.92))}
+.g1{grid-column:span 7;aspect-ratio:16/10}.g2{grid-column:span 5;aspect-ratio:4/3.35}
+.g3{grid-column:span 4;aspect-ratio:1/1.15}.g4{grid-column:span 4;aspect-ratio:1/1.15}.g5{grid-column:span 4;aspect-ratio:1/1.15}
+@media(max-width:820px){.g1,.g2,.g3,.g4,.g5{grid-column:span 12;aspect-ratio:16/10}}
+
+/* ===== bande dorée ===== */
+.gilded{background:linear-gradient(120deg,#0d1830,#123055 55%,#0d1830);border-top:1px solid rgba(201,162,39,.35);border-bottom:1px solid rgba(201,162,39,.35)}
+
+/* ===== signature / footer ===== */
+.sig{display:flex;flex-direction:column;align-items:center;gap:.9rem;text-align:center;margin-top:3.5rem}
+.sig .line{width:110px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.sig b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--champ);font-weight:700;letter-spacing:.06em}
+.sig span{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut)}
+footer{padding:3.2rem 6vw 4rem;border-top:1px solid rgba(255,255,255,.08);background:#070f20}
+footer .note{max-width:860px;margin:0 auto;font-size:.72rem;line-height:1.8;color:#5F6E8C;text-align:center}
+footer .brand{display:flex;justify-content:center;align-items:center;gap:1rem;margin-bottom:1.4rem}
+footer .brand img{width:52px;height:52px;border-radius:12px}
+footer .brand div{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);text-align:left}
+
+/* barre de progression */
+#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;z-index:99;box-shadow:0 0 10px rgba(232,199,102,.7)}
+</style>
+</head>
+<body>
+
+<style>
+#langbar{position:fixed;top:14px;right:16px;z-index:120;display:flex;align-items:center;gap:6px;
+  background:rgba(10,20,40,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(201,162,39,.4);
+  border-radius:99px;padding:5px 6px;box-shadow:0 10px 30px rgba(0,0,0,.45);font-family:'Montserrat',sans-serif}
+#langbar a{text-decoration:none;font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#93A3BF;
+  padding:6px 13px;border-radius:99px;transition:all .25s}
+#langbar a.active{background:linear-gradient(135deg,#C9A227,#E8C766);color:#171100}
+#langbar a:not(.active):hover{color:#E8C766}
+#langbar .home{display:flex;align-items:center;color:#93A3BF;padding:6px 11px;margin-right:2px;border-right:1px solid rgba(201,162,39,.3);border-radius:0}
+#langbar .home:hover{color:#E8C766}
+@media(max-width:600px){#langbar{top:auto;bottom:14px;right:50%;transform:translateX(50%)}}
+</style>
+<nav id="langbar" aria-label="Language selection">
+  <a class="home" href="/" title="Home" aria-label="Home">&#9670;</a>
+  <a href="/lire/" class="" hreflang="fr">FR</a>
+  <a href="/en/" class="active" hreflang="en">EN</a>
+</nav>
+
+<div id="pbar"></div>
+<div class="bg-grid"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-visual">
+    <div class="hero-halo"></div>
+    <div class="hero-ring"></div>
+    <img class="hero-portrait" src="/assets/b3af4384ffc0.webp" alt="Armand Gaetan NGUETI"/>
+    <div class="coin-scene"><div class="coin"><div class="edge"></div><div class="face front">₣</div><div class="face back">◈</div></div></div>
+    <div class="chain-wrap">
+<svg width="290" height="150" viewBox="0 0 290 150" fill="none" aria-hidden="true">
+<defs>
+ <linearGradient id="ctop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E8C766"/><stop offset="1" stop-color="#C9A227"/></linearGradient>
+ <linearGradient id="cleft" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1F4E8C"/><stop offset="1" stop-color="#122c52"/></linearGradient>
+ <linearGradient id="cright" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2c66b5"/><stop offset="1" stop-color="#173a68"/></linearGradient>
+</defs>
+<g opacity=".9">
+ <g transform="translate(8,44)">
+  <path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/>
+ </g>
+ <path d="M92 84 L118 74" stroke="#E8C766" stroke-width="2.5" stroke-dasharray="5 6"/>
+ <g transform="translate(112,28)">
+  <path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/>
+ </g>
+ <path d="M196 68 L222 58" stroke="#E8C766" stroke-width="2.5" stroke-dasharray="5 6"/>
+ <g transform="translate(216,12)">
+  <path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/>
+ </g>
+</g></svg></div>
+  </div>
+  <div class="hero-copy">
+    <span class="kicker">EDITORIAL — BANKING · FINANCE · PAYMENTS · INNOVATION</span>
+    <h1>In Libreville, the <em>currency of tomorrow</em> enters the lecture hall</h1>
+    <p class="sub">Cameroonian expert Armand Gaetan NGUETI leads, at the BGFI Business School, the first Master's-level course ever taught in Central Africa on cryptocurrencies, blockchain, stablecoins and central bank digital currencies. A historic academic moment, at the crossroads of monetary sovereignty and financial innovation.</p>
+    <div class="dateline">Libreville, July 2026 — The Editorial Board</div>
+  </div>
+  <div class="scroll-cue">Read the editorial</div>
+</header>
+
+<!-- ============ SECTION 1 ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">01</span><h2>A first in the <span class="gold">academic history</span> of the sub-region</h2></div>
+    <div class="lead-rule"></div>
+    <div class="prose two rv"><p>Some course openings feel like affairs of state. From 17 to 22 July 2026, in the lecture halls of the BGFI Business School in Libreville, practising bankers — professionals from the Banking, Finance, Economics, Commerce and Payment Systems tracks — take their seats before a board on which a word is being written that no Central African university had ever placed on a Master 2 curriculum: blockchain. The teaching unit "Cryptocurrencies & Blockchain — Focus on CBDCs & Stablecoins", delivered in the academic LMD format for the 2026-2027 year, is unprecedented in the recent academic history of Gabon and, more broadly, of Central Africa.</p><p>Fifteen hours of lectures, tutorials, a workshop and a final project, spread over four days: the format is compact, the ambition immense. For this is not about initiating students into a technological fashion. It is about intellectually equipping those who, tomorrow morning, will return to their counters, their trading rooms, their compliance and payment departments, to confront a question no bank in the world can now evade: what should be done about digital currencies?</p></div>
+    <div class="facts"><div class="fact rv"><b>15 h</b><span>of teaching over 4 days — lectures, tutorials, workshop, final project</span></div><div class="fact rv"><b>M2</b><span>Banking · Finance · Economics · Commerce · Payment Systems</span></div><div class="fact rv"><b>2026-2027</b><span>academic year — LMD format, teaching unit "SIBM1003c"</span></div><div class="fact rv"><b>ISO 21001</b><span>BBS, first certified grande école in Central Africa (2018 standard, obtained in 2025)</span></div><div class="fact rv"><b>6</b><span>target competencies, from fundamentals to professional recommendation</span></div><div class="fact rv"><b>60%</b><span>of the assessment: final project — integrative case study in a CEMAC bank</span></div></div>
+  </div>
+</section>
+
+<div class="pull rv"><p>"Distinguishing the real value of these technologies from the hype": the motto of a course that trains decision-makers, not converts.</p></div>
+
+<!-- ============ SECTION 2 : BBS ============ -->
+<section class="gilded">
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">02</span><h2>BBS: the setting of excellence <span class="gold">Central Africa</span> has given itself</h2></div>
+    <div class="lead-rule"></div>
+    <div class="prose two rv"><p>The choice of venue is no detail — it is a message. Founded in 2008 within the BGFIBank Group, the undisputed banking leader of Central Africa, the BGFI Business School — "the graduate school of management" — rose in 2025 to become the very first grande école in Central Africa certified ISO 21001:2018, the international standard for educational organizations. This certification, which attests to the quality of pedagogical management, the centrality of the learner and the continuous improvement of training programmes, places BBS within a very select circle of African institutions able to speak on equal terms with the world's standards in banking and financial education.</p><p>Backed by a group present in a dozen countries, whose some 3,000 employees it trains, and supported by a structured alumni network, BBS is not a school that comments on the banking sector: it is the school that Central Africa's banking sector has given itself — a laboratory where the sub-region's banking industry thinks through its own transformation. That it should be precisely this institution — led by Professor Pamphile Mezui-Mbeng — that opens the way to the teaching of digital assets is no accident: it is the hallmark of houses that prefer to precede history rather than endure it.</p><p>By entrusting this inaugural course to an outside expert of continental stature, invited and hosted in Libreville from 16 to 29 July 2026, the school performs an exemplary act of academic governance: seeking out, wherever it may be found, the best available expertise, and placing it at the service of its students.</p></div>
+    <div class="gal rv">
+      <figure class="g1"><img src="/assets/33ee950fd6eb.webp" alt="Graduation ceremony, BGFI Business School"/><figcaption>BBS — graduation ceremony</figcaption></figure>
+      <figure class="g2"><img src="/assets/f745a15cf480.webp" alt="A cohort of BBS students"/><figcaption>A BBS cohort — the graduate school of management</figcaption></figure>
+      <figure class="g3"><img src="/assets/71835d66850d.webp" alt="BBS graduates"/><figcaption>Diploma award ceremony</figcaption></figure>
+      <figure class="g4"><img src="/assets/4d152d60abdc.webp" alt="BGFI Business School logo" style="object-fit:contain;background:#fff;padding:12%"/><figcaption>First ISO 21001-certified school in Central Africa</figcaption></figure>
+      <figure class="g5"><img src="/assets/04f276b88152.webp" alt="Armand Gaetan NGUETI"/><figcaption>The expert invited by the BBS General Management</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 : contexte ============ -->
+<section>
+  <div class="container split">
+    <div class="frame3d rv">
+      <div class="ph"><img src="/assets/bddc8b3d2b99.webp" alt="Armand Gaetan NGUETI"/></div>
+      <div class="tag">CEMAC zone · Digital CFA franc</div>
+    </div>
+    <div>
+      <div class="sec-head rv"><span class="sec-num">03</span><h2>Africa's monetary moment: <span class="gold">why now</span></h2></div>
+      <div class="lead-rule"></div>
+      <div class="prose rv"><p>This course arrives at the exact hour when the monetary history of the sub-region is accelerating. The Bank of Central African States (BEAC) is showing ever keener interest in the evolution of the CFA franc towards a central bank digital currency — a project documented by its communications on the digital CFA franc. At the same time, players in the cryptocurrency sector, the innovation community and users themselves are exerting growing pressure: transfer costs, slow cross-border settlement, compliance requirements, competition from new instruments — so many practical difficulties in the movement of financial assets to which blockchain, stablecoins and altcoins claim to respond.</p><p>The global regulatory landscape, for its part, is already in motion: the European MiCA regulation, the American GENIUS Act of 2025, the CEMAC financial market regulation of 2022, pan-African payment systems such as Afreximbank's PAPSS facing the SWIFT network, the pioneering — and critically instructive — experience of Nigeria's eNaira documented by the IMF, and the Bank for International Settlements' work on CBDCs in Africa. Central Africa can no longer content itself with watching: it needs executives able to analyse, compare and decide. That is precisely the competence this course was designed to produce.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="pull rv"><p>Central Africa's first ISO-certified grande école entrusts the first Master's course on digital currencies to the continent's first BMM-certified consultant.</p></div>
+
+<!-- ============ SECTION 4 : l'homme ============ -->
+<section class="gilded">
+  <div class="container split">
+    <div>
+      <div class="sec-head rv"><span class="sec-num">04</span><h2>The man for the moment: a track record <span class="gold">that speaks for itself</span></h2></div>
+      <div class="lead-rule"></div>
+      <div class="prose rv"><p>The choice of expert is anything but incidental — it is, on the contrary, remarkably coherent. Armand Gaetan NGUETI, 37, is one of the most singular figures in African financial technology. Founding President of the Blockchain Association of Cameroon (BAC), Africa President of the Government Blockchain Association (GBA), Founder and CEO of UBTS International Corp (USA) and Africa President of PIPRA Solutions, he holds a distinction unique in the world: he is, to date, the first and only Blockchain Maturity Model (BMM) certified consultant from Africa.</p><p>His year 2025 sealed his international stature: a T20 Delegate — the Think20 engagement group — at the G20 Summit in South Africa, he also chairs, from Washington, the GBA's Food Supply Chain Working Group, the first African leader appointed to this strategic position. As Executive Coordinator for the ECCAS region of the Africa Digital Economy Summit (AfriDES), he carries the voice of the eleven countries of extended Central Africa in the continental digital agenda.</p><p>But it is perhaps his grounding in the real economy that most impresses practitioners: as the inventor of CAMTRADE PASS, a socio-technological initiative that gave the "Made in Cameroon" label end-to-end traceability through blockchain, AI and IoT, he has demonstrated in the field what theory promises in textbooks — down to the financial inclusion of producers obtaining bank financing on the strength of certified activity histories, without tangible assets. A specialist in blockchain applied to financial inclusion and traceability in Africa, a recognized voice in the public debate on the regulation of digital assets in the CEMAC zone, a trainer of the highest calibre since earning Microsoft Certified Trainer status in Bangalore at just 24, and an executive researcher in management sciences at Université Paul-Valéry Montpellier 3: the man combines the three legitimacies this course demanded — that of the international strategist, that of the ecosystem builder, and that of the educator.</p><p>Twenty years of top-tier training delivery, from the lecture halls of Bangalore to the universities of Lubumbashi, from Microsoft programmes to graduate business schools, have forged in him a conviction found on every page of the syllabus he designed in its entirety: technology should not be taught as dogma; it should be taught as an arbitration.</p></div>
+    </div>
+    <div class="frame3d rv" style="order:2">
+      <div class="ph"><img src="/assets/2eb16c8e00fc.webp" alt="Armand Gaetan NGUETI"/></div>
+      <div class="tag">Africa's 1st BMM-certified consultant</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 : le cours ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">05</span><h2>Inside the classroom: pedagogical engineering <span class="gold">of a master craftsman</span></h2></div>
+    <div class="lead-rule"></div>
+    <div class="prose two rv"><p>The syllabus — designed end to end by the expert, with its dedicated materials — is in itself a lesson in instructional design. Four days, four cognitive levels borrowed from Bloom's taxonomy: knowing and understanding (money, trust, blockchain, Bitcoin), applying and analysing (the cryptocurrency landscape, Ethereum and smart contracts, stablecoin typologies and their risks), analysing and differentiating (CBDCs, their intermediation models, the critical African reading of the eNaira), and finally evaluating and creating (stablecoins versus CBDCs, dollarization, sovereignty, professional synthesis).</p><p>Not a single line of code: the choice is deliberate. The approach is "business and payments-driven" — every concept is tied to its concrete effects on payments: costs, speed, settlement, compliance, competition. The tutorials pit card payments against Bitcoin, the stablecoin against SWIFT and PAPSS; the workshop asks: what would a CBDC be for, in Africa and in Europe? And the final project places each student in the chair of the head of payment systems of a commercial bank in the CEMAC zone, required to recommend — or not — the integration of a digital currency from among three options (stablecoin, CBDC, status quo) and to justify the trade-off: costs, speed, inclusion, compliance, sovereignty.</p><p>Six competencies structure the learning outcomes, from the fundamentals to the integrative capacity to formulate and defend a contextualized professional recommendation, by way of payments analysis, regulatory assessment (AML/CFT, consumer protection, BEAC and MiCA frameworks) and the strategic appreciation of monetary sovereignty and the geopolitics of payments. The assessment itself respects LMD alignment: an ungraded diagnostic quiz, continuous assessment at 40%, and the final project — written grade plus oral defence — at 60%. A demanding bibliography accompanies the whole, from Nakamoto (2008) to the BIS Papers on CBDCs in Africa, from the IMF working paper on the eNaira to the 2025 Chainalysis reports, through to the MiCA texts, the GENIUS Act and the CEMAC financial market regulation.</p><p>To develop "the critical thinking needed to distinguish the real value of these technologies from the hype": the phrase, taken from the course description, could serve as the motto of the entire endeavour. This is far, very far, from crypto evangelism. This is the training of decision-makers.</p></div>
+    <div class="days"><div class="day rv"><span class="dur">≈ 4 h</span><div class="dnum">1</div><span class="dbloom">Know · Understand</span><h3>Fundamentals: money, trust and blockchain</h3><p>Functions and forms of money, distributed-ledger principles, a first approach to Bitcoin. Tutorial: card payment vs Bitcoin.</p></div><div class="day rv"><span class="dur">≈ 4 h 15</span><div class="dnum">2</div><span class="dbloom">Apply · Analyse</span><h3>Cryptocurrencies & stablecoins: uses and models</h3><p>Ethereum and smart contracts, stablecoin typologies and risks. Tutorial: stablecoin vs SWIFT vs PAPSS. BEAC, MiCA, GENIUS Act frameworks.</p></div><div class="day rv"><span class="dur">≈ 3 h 30</span><div class="dnum">3</div><span class="dbloom">Analyse · Differentiate</span><h3>CBDCs: central bank digital currencies</h3><p>Typologies and intermediation models, a critical African reading (eNaira). Workshop: what would a CBDC be for in Africa / Europe?</p></div><div class="day rv"><span class="dur">≈ 3 h 15</span><div class="dnum">4</div><span class="dbloom">Evaluate · Create</span><h3>Comparisons, strategic issues & synthesis</h3><p>Stablecoins vs CBDCs, dollarization and sovereignty. Final project: integrative case study — commercial bank in the CEMAC zone.</p></div></div>
+    <h3 class="serif rv" style="margin-top:3.4rem;font-size:1.7rem;color:var(--champ);font-weight:700">Six competencies, one graduate profile</h3>
+    <div class="comps"><div class="comp rv"><div class="hex">C1</div><div><b>Fundamentals</b><span>Master the vocabulary and concepts of blockchain and digital assets.</span></div></div><div class="comp rv"><div class="hex">C2</div><div><b>Distinction</b><span>Characterize and distinguish cryptocurrencies, stablecoins and CBDCs.</span></div></div><div class="comp rv"><div class="hex">C3</div><div><b>Payments</b><span>Analyse payment issues: costs, speed, cross-border flows, disintermediation.</span></div></div><div class="comp rv"><div class="hex">C4</div><div><b>Regulatory</b><span>Assess compliance: AML/CFT, consumer protection, BEAC / MiCA frameworks.</span></div></div><div class="comp rv"><div class="hex">C5</div><div><b>Strategic</b><span>Appreciate monetary sovereignty and the geopolitics of payments.</span></div></div><div class="comp rv"><div class="hex">C6</div><div><b>Integrative</b><span>Formulate and defend a contextualized professional recommendation.</span></div></div></div>
+  </div>
+</section>
+
+<div class="pull rv"><p>There are alignments that owe nothing to chance and everything to vision.</p></div>
+
+<!-- ============ SECTION 6 : portée ============ -->
+<section class="gilded">
+  <div class="container split">
+    <div class="frame3d rv">
+      <div class="ph"><img src="/assets/065497c9985c.webp" alt="Armand Gaetan NGUETI"/></div>
+      <div class="tag">Training decision-makers</div>
+    </div>
+    <div>
+      <div class="sec-head rv"><span class="sec-num">06</span><h2>What this course changes — <span class="gold">and what it heralds</span></h2></div>
+      <div class="lead-rule"></div>
+      <div class="prose rv"><p>The students of this session are not novices in search of retraining: they are serving bankers, holding varied responsibilities across the sub-region's banking architecture. That is what gives this July week its systemic reach. Every competency acquired in Libreville will, from the very next week, flow into a risk department, a compliance committee, a payments division, a bank's strategic thinking. The course reinforces precisely the graduate profile the LMD system requires of Master's degree holders in banking, finance, economics and commerce: competencies directly deployable with banks, fintechs, Mobile Money operators, regulators — BEAC, COBAC, COSUMAF — and regional institutions.</p><p>Consider the convergence of symbols: the first ISO-certified grande école of Central Africa, backed by the sub-region's leading banking group, entrusts the first Master's course devoted to digital currencies to the continent's first BMM-certified consultant — at the precise moment when the regional central bank is exploring the digital future of the CFA franc. There are alignments that owe nothing to chance and everything to vision.</p><p>This editorialist will refrain from prophesying the fate of stablecoins or the timetable of a possible CEMAC CBDC — the course itself teaches, precisely, to distrust easy certainties. But one thing is settled: on the evening of 22 July 2026, Central Africa will count a cohort of banking executives able to analyse, compare and recommend, as professionals of payment systems, on the most strategic dossier of the monetary decade. This is how financial centres are built: not by decree, but by knowledge. And this is how a region ceases to be a spectator of its monetary destiny and becomes, at last, its operator.</p></div>
+      <div class="sig rv">
+        <div class="line"></div><b>The Editorial Board</b><span>Libreville · July 2026</span><div class="line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand"><img src="/assets/4d152d60abdc.webp" alt="BBS"/><div>BGFI Business School<br/>The graduate school of management</div></div>
+  <p class="note">Editorial written on the basis of the official course syllabus (BGFI Business School, LMD format, academic year 2026-2027), the letter of invitation from the BBS General Management and publicly available documentation on the BGFIBank Group and its school. © 2026 — All rights reserved.</p>
+</footer>
+
+<script>
+// barre de progression
+const pbar=document.getElementById('pbar');
+addEventListener('scroll',()=>{const h=document.documentElement;pbar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.14});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// halo suivant la souris sur les cartes de faits
+document.querySelectorAll('.fact').forEach(c=>c.addEventListener('mousemove',ev=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(ev.clientX-r.left)+'px');c.style.setProperty('--my',(ev.clientY-r.top)+'px');}));
+</script>
+</body>
+</html>

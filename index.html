@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Éditorial · BGFI Business School × Armand Gaetan NGUETI</title>
+<meta name="description" content="Éditorial bilingue — À Libreville, la monnaie de demain entre en amphithéâtre. BGFI Business School × Armand Gaetan NGUETI."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A1428;--gold:#C9A227;--gold2:#E8C766;--mut:#93A3BF;--champ:#F3E7C5}
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%}
+body{min-height:100vh;font-family:'Montserrat',sans-serif;color:#E9EDF5;overflow-x:hidden;
+  background:radial-gradient(1100px 700px at 78% -8%,rgba(31,78,140,.4),transparent 60%),
+    radial-gradient(900px 640px at -8% 40%,rgba(201,162,39,.12),transparent 55%),
+    radial-gradient(1000px 820px at 50% 115%,rgba(31,78,140,.28),transparent 62%),#0A1428}
+.grid{position:fixed;inset:0;z-index:-1;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:54px 54px;mask-image:radial-gradient(ellipse 88% 72% at 50% 34%,#000 30%,transparent 76%)}
+.wrap{max-width:1180px;margin:0 auto;min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:3rem;padding:5vh 6vw}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;text-align:center;padding-top:8vh;padding-bottom:6vh}}
+.kicker{display:inline-flex;align-items:center;gap:.7rem;font-size:.66rem;letter-spacing:.32em;font-weight:600;color:var(--gold2);
+  border:1px solid rgba(201,162,39,.42);padding:.55rem 1.1rem;border-radius:99px;background:rgba(201,162,39,.06)}
+.kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(2.5rem,5.5vw,4.4rem);line-height:1.04;margin:1.5rem 0 1rem;color:#fff}
+h1 em{font-style:italic;color:var(--gold2)}
+.sub{font-size:clamp(.92rem,1.3vw,1.05rem);line-height:1.7;color:var(--mut);max-width:52ch}
+@media(max-width:900px){.sub{margin:0 auto}}
+.pick{margin-top:2.6rem;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.cards{display:flex;gap:1.1rem;margin-top:1rem;flex-wrap:wrap}
+@media(max-width:900px){.cards{justify-content:center}}
+.card{position:relative;flex:1;min-width:190px;display:block;text-decoration:none;color:#fff;
+  border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:1.7rem 1.6rem;overflow:hidden;
+  background:linear-gradient(155deg,rgba(255,255,255,.07),rgba(255,255,255,.02));transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .5s}
+.card:hover{transform:translateY(-7px);border-color:rgba(201,162,39,.6)}
+.card .lg{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:var(--gold2);line-height:1}
+.card .lbl{font-size:.95rem;font-weight:600;margin-top:.5rem}
+.card .go{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:1.1rem;display:flex;align-items:center;gap:.5rem}
+.card .go .arw{transition:transform .4s}
+.card:hover .go .arw{transform:translateX(6px)}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(220px 120px at var(--mx,50%) var(--my,0%),rgba(232,199,102,.14),transparent 65%);pointer-events:none}
+.visual{position:relative}
+.halo{position:absolute;inset:0;margin:auto;width:78%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 42% 36%,rgba(232,199,102,.22),rgba(31,78,140,.2) 46%,transparent 70%);filter:blur(3px);animation:pulse 7s ease-in-out infinite}
+.ring{position:absolute;inset:0;margin:auto;width:84%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(201,162,39,.35);animation:spin 42s linear infinite}
+.ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
+.portrait{position:relative;display:block;width:100%;max-width:440px;margin:0 auto;filter:drop-shadow(0 34px 70px rgba(0,0,0,.6)) drop-shadow(0 0 54px rgba(31,78,140,.35));animation:rise 1.3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.06);opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rise{from{transform:translateY(46px);opacity:0}to{transform:none;opacity:1}}
+.foot{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center;gap:.9rem;padding:1.1rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+.foot img{width:30px;height:30px;border-radius:7px}
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<main class="wrap">
+  <section>
+    <span class="kicker">Éditorial · Editorial</span>
+    <h1>À Libreville, la <em>monnaie de demain</em> entre en amphithéâtre</h1>
+    <p class="sub">BGFI Business School × Armand Gaetan NGUETI — le premier cours de Master 2 consacré aux cryptomonnaies, à la blockchain, aux stablecoins et aux CBDC jamais dispensé en Afrique centrale.<br/><br/><span style="color:#7f8ca6">The first Master's-level course on cryptocurrencies, blockchain, stablecoins and CBDCs ever taught in Central Africa.</span></p>
+    <p class="pick">Choisissez votre langue · Choose your language</p>
+    <div class="cards">
+      <a class="card" href="/lire/" hreflang="fr">
+        <div class="lg">FR</div><div class="lbl">Lire en français</div>
+        <div class="go"><span>Version française</span><span class="arw">&#8594;</span></div>
+      </a>
+      <a class="card" href="/en/" hreflang="en">
+        <div class="lg">EN</div><div class="lbl">Read in English</div>
+        <div class="go"><span>English version</span><span class="arw">&#8594;</span></div>
+      </a>
+    </div>
+  </section>
+  <section class="visual">
+    <div class="halo"></div><div class="ring"></div>
+    <img class="portrait" src="/assets/b3af4384ffc0.webp" alt="Armand Gaetan NGUETI"/>
+  </section>
+</main>
+<div class="foot"><img src="/assets/4d152d60abdc.webp" alt="BBS"/><span>BGFI Business School · Libreville 2026</span></div>
+<script>
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+</script>
+</body>
+</html>
