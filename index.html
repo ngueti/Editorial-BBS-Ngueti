@@ -18,7 +18,9 @@ body{min-height:100vh;font-family:'Montserrat',sans-serif;color:#E9EDF5;overflow
 .grid{position:fixed;inset:0;z-index:-1;
   background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
   background-size:54px 54px;mask-image:radial-gradient(ellipse 88% 72% at 50% 34%,#000 30%,transparent 76%)}
-.wrap{max-width:1180px;margin:0 auto;min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:3rem;padding:5vh 6vw}
+#bg3d{position:fixed;inset:0;z-index:-2;display:block;opacity:.9}
+.wrap{max-width:1180px;margin:0 auto;min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:3rem;padding:5vh 6vw 7rem}
+.wrap>section{min-width:0}
 @media(max-width:900px){.wrap{grid-template-columns:1fr;text-align:center;padding-top:8vh;padding-bottom:6vh}}
 .kicker{display:inline-flex;align-items:center;gap:.7rem;font-size:.66rem;letter-spacing:.32em;font-weight:600;color:var(--gold2);
   border:1px solid rgba(201,162,39,.42);padding:.55rem 1.1rem;border-radius:99px;background:rgba(201,162,39,.06)}
@@ -40,20 +42,31 @@ h1 em{font-style:italic;color:var(--gold2)}
 .card .go .arw{transition:transform .4s}
 .card:hover .go .arw{transform:translateX(6px)}
 .card::after{content:"";position:absolute;inset:0;background:radial-gradient(220px 120px at var(--mx,50%) var(--my,0%),rgba(232,199,102,.14),transparent 65%);pointer-events:none}
-.visual{position:relative}
+.visual{position:relative;perspective:1400px}
 .halo{position:absolute;inset:0;margin:auto;width:78%;aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle at 42% 36%,rgba(232,199,102,.22),rgba(31,78,140,.2) 46%,transparent 70%);filter:blur(3px);animation:pulse 7s ease-in-out infinite}
 .ring{position:absolute;inset:0;margin:auto;width:84%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(201,162,39,.35);animation:spin 42s linear infinite}
 .ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
-.portrait{position:relative;display:block;width:100%;max-width:440px;margin:0 auto;filter:drop-shadow(0 34px 70px rgba(0,0,0,.6)) drop-shadow(0 0 54px rgba(31,78,140,.35));animation:rise 1.3s cubic-bezier(.2,.8,.2,1) both}
+.portrait{position:relative;display:block;width:100%;max-width:440px;margin:0 auto;transform-style:preserve-3d;will-change:transform;
+  filter:drop-shadow(0 34px 70px rgba(0,0,0,.6)) drop-shadow(0 0 54px rgba(31,78,140,.35));animation:rise 1.3s cubic-bezier(.2,.8,.2,1) both;transition:transform .18s cubic-bezier(.2,.7,.2,1)}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.06);opacity:1}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes rise{from{transform:translateY(46px);opacity:0}to{transform:none;opacity:1}}
-.foot{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center;gap:.9rem;padding:1.1rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+@keyframes rise{from{transform:translateY(46px) rotateY(0);opacity:0}to{opacity:1}}
+.marquee{position:fixed;left:0;right:0;bottom:56px;z-index:1;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee__track{display:flex;gap:2.2rem;width:max-content;white-space:nowrap;animation:marquee 24s linear infinite;
+  font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mut)}
+.marquee__track span{opacity:.75}
+.marquee__track span.dot{color:var(--gold);opacity:1}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@media(max-width:640px){.marquee{display:none}}
+.foot{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center;gap:.9rem;padding:1.1rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);z-index:1}
 .foot img{width:30px;height:30px;border-radius:7px}
+@media(prefers-reduced-motion:reduce){.halo,.ring,.marquee__track,.portrait{animation:none!important}#bg3d{display:none}}
 </style>
 </head>
 <body>
+<canvas id="bg3d" aria-hidden="true"></canvas>
 <div class="grid"></div>
 <main class="wrap">
   <section>
@@ -77,9 +90,119 @@ h1 em{font-style:italic;color:var(--gold2)}
     <img class="portrait" src="/assets/b3af4384ffc0.webp" alt="Armand Gaetan NGUETI"/>
   </section>
 </main>
+<div class="marquee">
+  <div class="marquee__track" id="marqueeTrack" aria-hidden="true"></div>
+</div>
 <div class="foot"><img src="/assets/4d152d60abdc.webp" alt="BBS"/><span>BGFI Business School · Libreville 2026</span></div>
 <script>
 document.querySelectorAll('.card').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+
+/* Infinite keyword marquee — content duplicated once so a 50% translateX loops seamlessly */
+(function(){
+  const words=['BLOCKCHAIN','STABLECOINS','CBDC','WEB3','CRYPTOMONNAIES','MASTER 2','BGFI BUSINESS SCHOOL','LIBREVILLE 2026'];
+  const track=document.getElementById('marqueeTrack');
+  const seq=words.map(w=>`<span>${w}</span><span class="dot">&bull;</span>`).join('');
+  track.innerHTML=seq+seq;
+})();
+
+/* 3D tilt on the portrait, following the cursor within the visual column */
+(function(){
+  const visual=document.querySelector('.visual'), portrait=document.querySelector('.portrait');
+  if(!visual||!portrait||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  visual.addEventListener('pointermove',e=>{
+    const r=visual.getBoundingClientRect();
+    const px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+    portrait.style.transform=`rotateY(${px*16}deg) rotateX(${py*-16}deg) translateZ(24px)`;
+  });
+  visual.addEventListener('pointerleave',()=>{portrait.style.transform='';});
+})();
+</script>
+<script type="module">
+/* Infinite 3D starfield tunnel (Three.js) — gold/blue particles drifting toward the camera and
+   wrapping to the far plane once passed, so the flight never visibly restarts. */
+(async function(){
+  const canvas=document.getElementById('bg3d');
+  if(!canvas||!('IntersectionObserver' in window)) return;
+  const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion){canvas.remove();return;}
+  let THREE;
+  try{ THREE=await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'); }
+  catch(e){ canvas.remove(); return; }
+
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  scene.fog=new THREE.FogExp2(0x0A1428,0.05);
+  const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,100);
+  camera.position.z=5;
+
+  const DEPTH=60;
+  const COUNT=innerWidth<700?700:2000;
+  const geo=new THREE.BufferGeometry();
+  const positions=new Float32Array(COUNT*3);
+  const colors=new Float32Array(COUNT*3);
+  const gold=new THREE.Color(0xE8C766), blue=new THREE.Color(0x3E6FB0);
+  for(let i=0;i<COUNT;i++){
+    const i3=i*3;
+    positions[i3]=(Math.random()-0.5)*16;
+    positions[i3+1]=(Math.random()-0.5)*16;
+    positions[i3+2]=-Math.random()*DEPTH;
+    const c=Math.random()>0.62?gold:blue;
+    colors[i3]=c.r;colors[i3+1]=c.g;colors[i3+2]=c.b;
+  }
+  geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  const points=new THREE.Points(geo,new THREE.PointsMaterial({size:0.045,vertexColors:true,transparent:true,opacity:0.85,depthWrite:false,blending:THREE.AdditiveBlending}));
+  scene.add(points);
+
+  const ringGroup=new THREE.Group();
+  for(let i=0;i<3;i++){
+    const torus=new THREE.Mesh(
+      new THREE.TorusGeometry(2.5+i*0.95,0.008,8,96),
+      new THREE.MeshBasicMaterial({color:0xC9A227,transparent:true,opacity:0.32-i*0.08})
+    );
+    torus.rotation.x=Math.PI/2+i*0.28;
+    torus.rotation.y=i*0.5;
+    ringGroup.add(torus);
+  }
+  ringGroup.position.z=-8;
+  scene.add(ringGroup);
+
+  let mx=0,my=0;
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-0.5;my=e.clientY/innerHeight-0.5;},{passive:true});
+
+  function resize(){
+    renderer.setSize(innerWidth,innerHeight);
+    camera.aspect=innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  addEventListener('resize',resize);
+
+  let running=true;
+  document.addEventListener('visibilitychange',()=>{running=!document.hidden;});
+
+  const clock=new THREE.Clock();
+  function animate(){
+    requestAnimationFrame(animate);
+    if(!running) return;
+    const dt=Math.min(clock.getDelta(),0.05);
+    const pos=geo.attributes.position;
+    for(let i=0;i<COUNT;i++){
+      let z=pos.getZ(i)+dt*4;
+      if(z>5) z-=DEPTH;
+      pos.setZ(i,z);
+    }
+    pos.needsUpdate=true;
+    ringGroup.rotation.z+=dt*0.05;
+    ringGroup.rotation.y+=dt*0.03;
+    camera.position.x+=(mx*0.6-camera.position.x)*0.04;
+    camera.position.y+=(-my*0.4-camera.position.y)*0.04;
+    camera.lookAt(0,0,-10);
+    renderer.render(scene,camera);
+  }
+  animate();
+})();
 </script>
 </body>
 </html>
