@@ -4,13 +4,16 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>À Libreville, la monnaie de demain entre en amphithéâtre — Éditorial</title>
+<meta name="description" content="Récit immersif du premier cours de Master 2 sur les cryptomonnaies, la blockchain, les stablecoins et les CBDC jamais dispensé en Afrique centrale. BGFI Business School × Armand Gaetan NGUETI."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0A1428; --navy:#0E1B36; --navy2:#132447; --bbs:#1F4E8C;
-  --gold:#C9A227; --gold2:#E8C766; --champ:#F3E7C5; --paper:#F7F4EC;
+  --ink:#070E1F; --navy:#0C1730; --navy2:#122242; --bbs:#1F4E8C;
+  --gold:#C9A227; --gold2:#E8C766; --champ:#F3E7C5;
   --txt:#E9EDF5; --mut:#93A3BF;
+  --glass:rgba(255,255,255,.055); --glass2:rgba(255,255,255,.09);
+  --gbord:rgba(255,255,255,.13); --gbord-gold:rgba(201,162,39,.45);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -19,327 +22,405 @@ body{font-family:'Montserrat',sans-serif;background:var(--ink);color:var(--txt);
 h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
 img{max-width:100%;display:block}
 
-/* ===== fond étoilé / grille ===== */
-.bg-grid{position:fixed;inset:0;z-index:-2;
-  background:
-    radial-gradient(1200px 700px at 80% -10%, rgba(31,78,140,.35), transparent 60%),
-    radial-gradient(900px 600px at -10% 30%, rgba(201,162,39,.12), transparent 55%),
-    radial-gradient(1000px 800px at 50% 110%, rgba(31,78,140,.25), transparent 60%),
-    var(--ink);}
-.bg-grid::after{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-  background-size:56px 56px;
-  mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 30%,transparent 75%);}
+/* ---------- fond aurora + grille ---------- */
+.bg{position:fixed;inset:0;z-index:-3;background:
+  radial-gradient(1300px 800px at 82% -12%, rgba(31,78,140,.42), transparent 60%),
+  radial-gradient(1000px 700px at -12% 34%, rgba(201,162,39,.13), transparent 55%),
+  radial-gradient(1100px 900px at 50% 112%, rgba(31,78,140,.30), transparent 62%),
+  var(--ink)}
+.bg::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:radial-gradient(ellipse 92% 72% at 50% 30%,#000 28%,transparent 76%)}
+.bg::after{content:"";position:absolute;inset:0;backdrop-filter:blur(0px);
+  background:radial-gradient(700px 500px at var(--ax,70%) var(--ay,20%), rgba(232,199,102,.06), transparent 60%)}
 
-/* ===== HERO ===== */
-.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:5vh 6vw 8vh;perspective:1200px}
-.hero-copy{max-width:660px;position:relative;z-index:3}
-.kicker{display:inline-flex;align-items:center;gap:.7rem;font-size:.68rem;letter-spacing:.32em;font-weight:600;color:var(--gold2);
-  border:1px solid rgba(201,162,39,.4);padding:.55rem 1.1rem;border-radius:99px;backdrop-filter:blur(6px);background:rgba(201,162,39,.06)}
+/* ---------- barre progression + langue ---------- */
+#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;z-index:99;box-shadow:0 0 12px rgba(232,199,102,.8)}
+#langbar{position:fixed;top:14px;right:16px;z-index:120;display:flex;align-items:center;gap:6px;
+  background:rgba(9,17,36,.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--gbord-gold);border-radius:99px;padding:5px 6px;box-shadow:0 12px 34px rgba(0,0,0,.5)}
+#langbar a{text-decoration:none;font-size:.7rem;font-weight:700;letter-spacing:.12em;color:var(--mut);padding:6px 13px;border-radius:99px;transition:all .25s}
+#langbar a.active{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#171100}
+#langbar a:not(.active):hover{color:var(--gold2)}
+#langbar .home{border-right:1px solid rgba(201,162,39,.3);border-radius:0;margin-right:2px;padding:6px 11px}
+@media(max-width:600px){#langbar{top:auto;bottom:14px;right:50%;transform:translateX(50%)}}
+
+/* ---------- HERO 3D parallaxe ---------- */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:6vh 6vw 9vh;perspective:1300px;overflow:hidden}
+.hero-copy{max-width:640px;position:relative;z-index:5}
+.kicker{display:inline-flex;align-items:center;gap:.7rem;font-size:.66rem;letter-spacing:.3em;font-weight:600;color:var(--gold2);
+  border:1px solid var(--gbord-gold);padding:.6rem 1.15rem;border-radius:99px;
+  background:rgba(201,162,39,.07);backdrop-filter:blur(10px)}
 .kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
-.hero h1{font-size:clamp(2.6rem,6vw,4.9rem);line-height:1.02;font-weight:700;margin:1.4rem 0 1.1rem;color:#fff}
+.hero h1{font-size:clamp(2.5rem,5.8vw,4.7rem);line-height:1.03;font-weight:700;margin:1.4rem 0 1.1rem;color:#fff}
 .hero h1 em{font-style:italic;color:var(--gold2)}
-.hero .sub{font-size:clamp(.95rem,1.35vw,1.08rem);line-height:1.75;color:var(--mut);max-width:56ch}
-.dateline{margin-top:1.6rem;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
-.hero-visual{position:absolute;right:0;bottom:0;top:0;width:52vw;min-width:520px;pointer-events:none;z-index:1}
-.hero-portrait{position:absolute;right:3vw;bottom:0;height:92%;filter:drop-shadow(0 40px 80px rgba(0,0,0,.65)) drop-shadow(0 0 60px rgba(31,78,140,.35));
-  animation:rise 1.4s cubic-bezier(.2,.8,.2,1) both .2s}
-.hero-halo{position:absolute;right:6vw;bottom:6vh;width:34vw;height:34vw;min-width:420px;min-height:420px;border-radius:50%;
-  background:radial-gradient(circle at 40% 35%, rgba(232,199,102,.22), rgba(31,78,140,.18) 45%, transparent 70%);
-  filter:blur(4px);animation:pulse 7s ease-in-out infinite}
-.hero-ring{position:absolute;right:5vw;bottom:4vh;width:36vw;height:36vw;min-width:460px;min-height:460px;border-radius:50%;
-  border:1px solid rgba(201,162,39,.35);animation:spin 40s linear infinite}
-.hero-ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
-@keyframes rise{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.06);opacity:1}}
-@keyframes spin{to{transform:rotate(360deg)}}
-.scroll-cue{position:absolute;left:50%;bottom:2.4rem;transform:translateX(-50%);font-size:.62rem;letter-spacing:.4em;color:var(--mut);text-transform:uppercase;z-index:4}
-.scroll-cue::after{content:"";display:block;width:1px;height:44px;background:linear-gradient(var(--gold),transparent);margin:.7rem auto 0;animation:drop 1.8s ease-in-out infinite}
-@keyframes drop{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-
-/* ===== pièce 3D ===== */
-.coin-scene{position:absolute;left:47%;top:14%;width:150px;height:150px;perspective:900px;z-index:2;animation:floaty 6s ease-in-out infinite}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.hero .sub{font-size:clamp(.94rem,1.3vw,1.06rem);line-height:1.78;color:var(--mut);max-width:58ch}
+.dateline{margin-top:1.5rem;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.hero-visual{position:absolute;right:-2vw;top:0;bottom:0;width:54vw;min-width:520px;pointer-events:none;z-index:1}
+.plx{position:absolute;will-change:transform;transition:transform .12s ease-out}
+.halo{right:9vw;bottom:10vh;width:32vw;height:32vw;min-width:400px;min-height:400px;border-radius:50%;
+  background:radial-gradient(circle at 40% 34%, rgba(232,199,102,.24), rgba(31,78,140,.2) 46%, transparent 70%);filter:blur(6px);animation:pulse 8s ease-in-out infinite}
+.ring{right:7.5vw;bottom:7vh;width:35vw;height:35vw;min-width:450px;min-height:450px;border-radius:50%;border:1px solid rgba(201,162,39,.4);animation:spin 44s linear infinite}
+.ring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
+.ring2{right:5.5vw;bottom:4vh;width:39vw;height:39vw;min-width:500px;min-height:500px;border-radius:50%;border:1px dashed rgba(147,163,191,.22);animation:spin 70s linear infinite reverse}
+.hero-portrait{right:10vw;bottom:12vh;width:27vw;min-width:340px;max-width:520px;aspect-ratio:1;border-radius:50%;overflow:hidden;
+  border:2px solid rgba(232,199,102,.55);box-shadow:0 40px 90px rgba(0,0,0,.65), 0 0 70px rgba(31,78,140,.4), inset 0 0 40px rgba(0,0,0,.3);
+  animation:rise 1.4s cubic-bezier(.2,.8,.2,1) both .15s}
+.hero-portrait img{width:100%;height:100%;object-fit:cover}
+.coin-scene{left:44%;top:11%;width:140px;height:140px;perspective:900px;animation:floaty 6s ease-in-out infinite}
 .coin{position:absolute;inset:0;transform-style:preserve-3d;animation:coin-spin 9s linear infinite}
-@keyframes coin-spin{to{transform:rotateY(360deg)}}
 .coin .face{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:3.4rem;color:#5d4708;
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:3.1rem;color:#5d4708;
   background:radial-gradient(circle at 32% 30%, #F6E7B4, #E3C566 45%, #B8922C 78%, #8a6c1c);
   box-shadow:inset 0 0 24px rgba(120,90,10,.55);backface-visibility:hidden}
-.coin .face.back{transform:rotateY(180deg) translateZ(10px)}
-.coin .face.front{transform:translateZ(10px)}
-.coin .edge{position:absolute;inset:0;border-radius:50%;transform:translateZ(0);
-  background:conic-gradient(#a37f1e,#e6c766,#a37f1e,#e6c766,#a37f1e);opacity:.9}
+.coin .face.back{transform:rotateY(180deg) translateZ(9px)}
+.coin .face.front{transform:translateZ(9px)}
+.coin .edge{position:absolute;inset:0;border-radius:50%;background:conic-gradient(#a37f1e,#e6c766,#a37f1e,#e6c766,#a37f1e);opacity:.9}
 .coin .face::after{content:"";position:absolute;inset:9%;border-radius:50%;border:2px solid rgba(120,90,10,.45)}
+.chain{left:33%;bottom:9%;animation:floaty 7.5s ease-in-out infinite reverse}
+@keyframes rise{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.05);opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+@keyframes coin-spin{to{transform:rotateY(360deg)}}
+.scroll-cue{position:absolute;left:50%;bottom:2.2rem;transform:translateX(-50%);font-size:.62rem;letter-spacing:.4em;color:var(--mut);text-transform:uppercase;z-index:6}
+.scroll-cue::after{content:"";display:block;width:1px;height:44px;background:linear-gradient(var(--gold),transparent);margin:.7rem auto 0;animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:900px){.hero-visual{opacity:.35}.hero-copy{max-width:100%}}
 
-/* ===== cubes blockchain isométriques (SVG) ===== */
-.chain-wrap{position:absolute;left:38%;bottom:8%;z-index:2;opacity:.95;animation:floaty 7s ease-in-out infinite reverse}
+/* ---------- chips contexte (verre) ---------- */
+.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;max-width:1180px;margin:-3.2rem auto 0;padding:0 6vw;position:relative;z-index:6}
+.chip{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--gbord);
+  border-radius:16px;padding:1.05rem 1.2rem;box-shadow:0 18px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08)}
+.chip b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold2);font-weight:700}
+.chip span{font-size:.72rem;color:var(--mut);letter-spacing:.04em;line-height:1.5;display:block;margin-top:.2rem}
 
-/* ===== sections ===== */
-section{position:relative;padding:7rem 6vw}
+/* ---------- sections ---------- */
+section{position:relative;padding:6.5rem 6vw}
 .container{max-width:1180px;margin:0 auto}
-.sec-head{display:flex;align-items:baseline;gap:1.6rem;margin-bottom:3rem}
-.sec-num{font-family:'Cormorant Garamond',serif;font-size:4.6rem;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(201,162,39,.65);line-height:1}
-.sec-head h2{font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:700;color:#fff;line-height:1.12}
+.sec-head{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:2.6rem}
+.sec-num{font-family:'Cormorant Garamond',serif;font-size:4.4rem;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(201,162,39,.6);line-height:1}
+.sec-head h2{font-size:clamp(1.65rem,3.1vw,2.5rem);font-weight:700;color:#fff;line-height:1.14}
 .sec-head h2 .gold{color:var(--gold2)}
 .lead-rule{width:64px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:2rem}
-.prose{columns:1;max-width:74ch;font-size:1.02rem;line-height:1.95;color:#C9D3E4}
+.prose{max-width:74ch;font-size:1.01rem;line-height:1.95;color:#C9D3E4}
 .prose p{margin-bottom:1.5rem;text-align:justify}
-.prose p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.6rem;font-weight:700;color:var(--gold2);float:left;line-height:.8;padding:.35rem .8rem 0 0}
-@media(min-width:1000px){.prose.two{columns:2;column-gap:3.4rem;max-width:none}}
+.prose p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;color:var(--gold2);float:left;line-height:.82;padding:.32rem .75rem 0 0}
+@media(min-width:1000px){.prose.two{columns:2;column-gap:3.2rem;max-width:none}}
+.gilded{background:linear-gradient(120deg,rgba(13,24,48,.6),rgba(18,48,85,.5) 55%,rgba(13,24,48,.6));
+  border-top:1px solid rgba(201,162,39,.3);border-bottom:1px solid rgba(201,162,39,.3);backdrop-filter:blur(6px)}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(42px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+/* reveal + image reveal soigné */
+.rv{opacity:0;transform:translateY(44px);transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform .95s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:none}
+.irv{clip-path:inset(12% 12% 12% 12% round 20px);transform:scale(1.06);opacity:0;
+  transition:clip-path 1.15s cubic-bezier(.2,.7,.2,1),transform 1.15s cubic-bezier(.2,.7,.2,1),opacity .7s}
+.irv.on{clip-path:inset(0 0 0 0 round 20px);transform:scale(1);opacity:1}
 
-/* ===== bandeau faits (3D tilt cards) ===== */
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.1rem;margin-top:3.4rem;perspective:1000px}
-.fact{position:relative;border-radius:18px;padding:1.5rem 1.3rem;background:linear-gradient(150deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);transform-style:preserve-3d;transition:transform .5s ease,border-color .5s;}
-.fact:hover{transform:rotateX(7deg) rotateY(-7deg) translateY(-6px);border-color:rgba(201,162,39,.55)}
-.fact b{display:block;font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--gold2);font-weight:700;transform:translateZ(26px)}
-.fact span{font-size:.74rem;line-height:1.55;color:var(--mut);display:block;margin-top:.4rem;transform:translateZ(14px)}
-.fact::after{content:"";position:absolute;inset:0;border-radius:18px;background:radial-gradient(240px 120px at var(--mx,50%) var(--my,0%),rgba(232,199,102,.14),transparent 65%);pointer-events:none}
-
-/* ===== citation ===== */
-.pull{margin:4.5rem auto;max-width:900px;text-align:center;position:relative;padding:0 2rem}
-.pull p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.15rem);font-style:italic;font-weight:600;line-height:1.4;color:var(--champ)}
-.pull::before,.pull::after{content:"◆";color:var(--gold);font-size:.8rem;display:block;margin:1.2rem auto}
-
-/* ===== portrait split ===== */
+/* ---------- split portrait 3D ---------- */
 .split{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center}
 @media(min-width:960px){.split{grid-template-columns:.92fr 1.08fr}}
 .frame3d{position:relative;perspective:1100px}
 .frame3d .ph{border-radius:22px;overflow:hidden;transform:rotateY(-7deg) rotateX(2deg);transform-style:preserve-3d;
-  box-shadow:30px 45px 90px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12);transition:transform .7s ease}
+  box-shadow:30px 45px 90px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);transition:transform .7s ease}
 .frame3d:hover .ph{transform:rotateY(-2deg)}
 .frame3d::before{content:"";position:absolute;inset:8% -5% -6% 10%;border:1px solid rgba(201,162,39,.5);border-radius:26px;transform:translateZ(-60px)}
 .frame3d .tag{position:absolute;left:-14px;bottom:26px;background:linear-gradient(135deg,var(--gold),#a3801f);color:#171100;
-  font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.7rem 1.2rem;border-radius:10px;
-  box-shadow:0 14px 30px rgba(0,0,0,.5);transform:rotate(-2deg)}
+  font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:.7rem 1.15rem;border-radius:10px;
+  box-shadow:0 14px 30px rgba(0,0,0,.5);transform:rotate(-2deg);max-width:85%}
 
-/* ===== timeline 4 jours (cartes 3D) ===== */
-.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.4rem;perspective:1400px;margin-top:2.6rem}
-.day{position:relative;border-radius:20px;padding:1.9rem 1.6rem 1.7rem;transform-style:preserve-3d;transition:transform .55s ease;
-  background:linear-gradient(160deg,var(--navy2),var(--navy) 65%);border:1px solid rgba(255,255,255,.09)}
-.day:hover{transform:translateY(-10px) rotateX(6deg)}
-.day::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
-  background:linear-gradient(140deg,rgba(232,199,102,.7),transparent 40%,transparent 65%,rgba(31,78,140,.8));
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.day .dnum{font-family:'Cormorant Garamond',serif;font-size:2.9rem;font-weight:700;color:var(--gold2);line-height:1;transform:translateZ(24px)}
-.day .dbloom{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bbs);background:rgba(255,255,255,.9);
-  display:inline-block;padding:.32rem .7rem;border-radius:99px;font-weight:700;margin:.8rem 0 .9rem;transform:translateZ(18px)}
-.day h3{font-size:1.18rem;color:#fff;font-weight:700;line-height:1.3;margin-bottom:.7rem;transform:translateZ(14px)}
-.day p{font-size:.83rem;line-height:1.7;color:var(--mut)}
-.day .dur{position:absolute;top:1.4rem;right:1.4rem;font-size:.68rem;color:var(--gold2);letter-spacing:.12em;font-weight:600}
+/* ---------- galeries + lightbox ---------- */
+.gal{display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem;margin-top:2.4rem}
+.gal figure{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--gbord);box-shadow:0 24px 50px rgba(0,0,0,.45);cursor:zoom-in;background:var(--navy)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.gal figure:hover img{transform:scale(1.07)}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.4rem 1.15rem .95rem;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(transparent,rgba(5,10,24,.94));transform:translateY(8px);opacity:.85;transition:all .5s}
+.gal figure:hover figcaption{transform:none;opacity:1}
+.g-a{grid-column:span 7;aspect-ratio:16/10}.g-b{grid-column:span 5;aspect-ratio:4/3.35}
+.g-c{grid-column:span 4;aspect-ratio:1/1.05}.g-d{grid-column:span 4;aspect-ratio:1/1.05}.g-e{grid-column:span 4;aspect-ratio:1/1.05}
+.g-f{grid-column:span 6;aspect-ratio:16/10}.g-g{grid-column:span 6;aspect-ratio:16/10}
+.contain{background:#fff}.contain img{object-fit:contain;padding:10%}
+@media(max-width:820px){.gal>figure{grid-column:span 12 !important;aspect-ratio:16/10}}
+#lightbox{position:fixed;inset:0;z-index:200;background:rgba(4,8,20,.92);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:4vh 4vw;cursor:zoom-out}
+#lightbox.open{display:flex;animation:lbfade .3s ease}
+#lightbox img{max-width:92vw;max-height:86vh;border-radius:14px;box-shadow:0 40px 120px rgba(0,0,0,.8)}
+#lightbox .cap{position:absolute;bottom:3vh;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--champ)}
+@keyframes lbfade{from{opacity:0}to{opacity:1}}
 
-/* ===== compétences hexa ===== */
-.comps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;margin-top:2.6rem}
-.comp{display:flex;gap:1.1rem;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
-  border-radius:16px;padding:1.3rem 1.4rem;transition:border-color .4s,transform .4s}
-.comp:hover{border-color:rgba(201,162,39,.5);transform:translateX(6px)}
-.hex{flex:0 0 52px;height:58px;display:flex;align-items:center;justify-content:center;
+/* ---------- citation ---------- */
+.pull{margin:4.2rem auto;max-width:920px;text-align:center;position:relative;padding:0 2rem}
+.pull p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.45rem,2.9vw,2.1rem);font-style:italic;font-weight:600;line-height:1.42;color:var(--champ)}
+.pull::before,.pull::after{content:"\25C6";color:var(--gold);font-size:.75rem;display:block;margin:1.2rem auto}
+
+/* ---------- cartes jours (tilt 3D) ---------- */
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.35rem;perspective:1500px;margin-top:2.4rem}
+.day{position:relative;border-radius:20px;padding:1.8rem 1.5rem 1.6rem;transform-style:preserve-3d;transition:transform .5s ease,border-color .5s;
+  background:linear-gradient(165deg,var(--glass2),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid var(--gbord)}
+.day:hover{border-color:var(--gbord-gold)}
+.day .dnum{font-family:'Cormorant Garamond',serif;font-size:2.7rem;font-weight:700;color:var(--gold2);line-height:1;transform:translateZ(26px)}
+.day .dbloom{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bbs);background:rgba(255,255,255,.92);
+  display:inline-block;padding:.3rem .68rem;border-radius:99px;font-weight:700;margin:.75rem 0 .8rem;transform:translateZ(18px)}
+.day h3{font-size:1.1rem;color:#fff;font-weight:700;line-height:1.3;margin-bottom:.8rem;transform:translateZ(14px)}
+.day ul{list-style:none;transform:translateZ(8px)}
+.day li{font-size:.76rem;line-height:1.6;color:var(--mut);padding:.32rem 0 .32rem 1.1rem;position:relative;border-top:1px dashed rgba(255,255,255,.07)}
+.day li:first-child{border-top:none}
+.day li::before{content:"\25C6";position:absolute;left:0;top:.42rem;font-size:.5rem;color:var(--gold)}
+.day .dur{position:absolute;top:1.35rem;right:1.35rem;font-size:.66rem;color:var(--gold2);letter-spacing:.1em;font-weight:600}
+
+/* ---------- évaluation ---------- */
+.evals{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-top:1.8rem}
+.eval{background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--gbord);border-radius:18px;padding:1.5rem 1.4rem;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.eval b{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold2);font-weight:700;display:block}
+.eval span{font-size:.8rem;line-height:1.7;color:var(--mut);display:block;margin-top:.4rem}
+
+/* ---------- compétences ---------- */
+.comps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.15rem;margin-top:2.2rem}
+.comp{display:flex;gap:1.05rem;align-items:flex-start;background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--gbord);
+  border-radius:16px;padding:1.25rem 1.35rem;transition:border-color .4s,transform .4s}
+.comp:hover{border-color:var(--gbord-gold);transform:translateX(6px)}
+.hex{flex:0 0 50px;height:56px;display:flex;align-items:center;justify-content:center;
   clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);
-  background:linear-gradient(160deg,var(--gold2),#9a7a1e);color:#191300;font-weight:800;font-size:.95rem;font-family:'Montserrat'}
-.comp b{display:block;color:#fff;font-size:.95rem;margin-bottom:.3rem}
-.comp span{font-size:.82rem;line-height:1.65;color:var(--mut)}
+  background:linear-gradient(160deg,var(--gold2),#9a7a1e);color:#191300;font-weight:800;font-size:.92rem}
+.comp b{display:block;color:#fff;font-size:.94rem;margin-bottom:.28rem}
+.comp span{font-size:.8rem;line-height:1.65;color:var(--mut)}
 
-/* ===== galerie ===== */
-.gal{display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem;margin-top:2.6rem}
-.gal figure{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 24px 50px rgba(0,0,0,.45)}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
-.gal figure:hover img{transform:scale(1.06)}
-.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.2rem 1.2rem .9rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;
-  background:linear-gradient(transparent,rgba(6,12,26,.92))}
-.g1{grid-column:span 7;aspect-ratio:16/10}.g2{grid-column:span 5;aspect-ratio:4/3.35}
-.g3{grid-column:span 4;aspect-ratio:1/1.15}.g4{grid-column:span 4;aspect-ratio:1/1.15}.g5{grid-column:span 4;aspect-ratio:1/1.15}
-@media(max-width:820px){.g1,.g2,.g3,.g4,.g5{grid-column:span 12;aspect-ratio:16/10}}
+/* ---------- panorama régional ---------- */
+.regions{display:flex;flex-direction:column;gap:1.4rem;margin-top:2.6rem}
+.region{position:relative;border-radius:22px;padding:2rem 2.1rem;overflow:hidden;
+  background:linear-gradient(150deg,var(--glass2),rgba(255,255,255,.02));backdrop-filter:blur(16px);
+  border:1px solid var(--gbord);box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 24px 50px rgba(0,0,0,.35);transition:border-color .5s}
+.region:hover{border-color:var(--gbord-gold)}
+.region::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--gold),transparent)}
+.region .rtag{display:inline-block;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--gold2);
+  border:1px solid var(--gbord-gold);background:rgba(201,162,39,.08);padding:.42rem .9rem;border-radius:99px;margin-bottom:.9rem}
+.region h3{font-size:1.5rem;color:#fff;font-weight:700;margin-bottom:.7rem}
+.region p{font-size:.92rem;line-height:1.85;color:#C9D3E4;text-align:justify;max-width:100ch}
 
-/* ===== bande dorée ===== */
-.gilded{background:linear-gradient(120deg,#0d1830,#123055 55%,#0d1830);border-top:1px solid rgba(201,162,39,.35);border-bottom:1px solid rgba(201,162,39,.35)}
+/* ---------- appels ---------- */
+.calls{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.2rem;margin-top:2.4rem}
+.call{background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--gbord);border-radius:20px;padding:1.6rem 1.55rem;
+  transition:transform .45s,border-color .45s;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.call:hover{transform:translateY(-6px);border-color:var(--gbord-gold)}
+.call b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.28rem;color:var(--gold2);font-weight:700;margin-bottom:.6rem}
+.call p{font-size:.85rem;line-height:1.78;color:#C9D3E4}
 
-/* ===== signature / footer ===== */
-.sig{display:flex;flex-direction:column;align-items:center;gap:.9rem;text-align:center;margin-top:3.5rem}
-.sig .line{width:110px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.sig b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--champ);font-weight:700;letter-spacing:.06em}
-.sig span{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut)}
-footer{padding:3.2rem 6vw 4rem;border-top:1px solid rgba(255,255,255,.08);background:#070f20}
-footer .note{max-width:860px;margin:0 auto;font-size:.72rem;line-height:1.8;color:#5F6E8C;text-align:center}
+/* ---------- signature / footer ---------- */
+.sig{display:flex;flex-direction:column;align-items:center;gap:.85rem;text-align:center;margin-top:3.6rem}
+.sig .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.sig b{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--champ);font-weight:700;letter-spacing:.04em}
+.sig i{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold2)}
+.sig span{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut)}
+footer{padding:3.2rem 6vw 4.2rem;border-top:1px solid rgba(255,255,255,.08);background:rgba(5,10,24,.85);backdrop-filter:blur(10px)}
 footer .brand{display:flex;justify-content:center;align-items:center;gap:1rem;margin-bottom:1.4rem}
-footer .brand img{width:52px;height:52px;border-radius:12px}
-footer .brand div{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);text-align:left}
-
-/* barre de progression */
-#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;z-index:99;box-shadow:0 0 10px rgba(232,199,102,.7)}
+footer .brand img{width:54px;height:54px;border-radius:12px;background:#fff;padding:4px}
+footer .brand div{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);text-align:left}
+footer .note{max-width:880px;margin:0 auto;font-size:.7rem;line-height:1.85;color:#5F6E8C;text-align:center}
 </style>
 </head>
 <body>
-
-<style>
-#langbar{position:fixed;top:14px;right:16px;z-index:120;display:flex;align-items:center;gap:6px;
-  background:rgba(10,20,40,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(201,162,39,.4);
-  border-radius:99px;padding:5px 6px;box-shadow:0 10px 30px rgba(0,0,0,.45);font-family:'Montserrat',sans-serif}
-#langbar a{text-decoration:none;font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#93A3BF;
-  padding:6px 13px;border-radius:99px;transition:all .25s}
-#langbar a.active{background:linear-gradient(135deg,#C9A227,#E8C766);color:#171100}
-#langbar a:not(.active):hover{color:#E8C766}
-#langbar .home{display:flex;align-items:center;color:#93A3BF;padding:6px 11px;margin-right:2px;border-right:1px solid rgba(201,162,39,.3);border-radius:0}
-#langbar .home:hover{color:#E8C766}
-@media(max-width:600px){#langbar{top:auto;bottom:14px;right:50%;transform:translateX(50%)}}
-</style>
 <nav id="langbar" aria-label="Choix de la langue">
   <a class="home" href="/" title="Accueil" aria-label="Accueil">&#9670;</a>
   <a href="/lire/" class="active" hreflang="fr">FR</a>
   <a href="/en/" class="" hreflang="en">EN</a>
 </nav>
-
 <div id="pbar"></div>
-<div class="bg-grid"></div>
+<div class="bg"></div>
 
-<!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-visual">
-    <div class="hero-halo"></div>
-    <div class="hero-ring"></div>
-    <img class="hero-portrait" src="/assets/b3af4384ffc0.webp" alt="Armand Gaetan NGUETI"/>
-    <div class="coin-scene"><div class="coin"><div class="edge"></div><div class="face front">₣</div><div class="face back">◈</div></div></div>
-    <div class="chain-wrap">
-<svg width="290" height="150" viewBox="0 0 290 150" fill="none" aria-hidden="true">
+    <div class="plx halo" data-depth="14" style="position:absolute"></div>
+    <div class="plx ring2" data-depth="6" style="position:absolute"></div>
+    <div class="plx ring" data-depth="10" style="position:absolute"></div>
+    <div class="plx hero-portrait" data-depth="18" style="position:absolute"><img src="/assets/portrait-cercle.webp" alt="Armand Gaetan NGUETI"/></div>
+    <div class="plx coin-scene" data-depth="26" style="position:absolute"><div class="coin"><div class="edge"></div><div class="face front">&#8355;</div><div class="face back">&#9672;</div></div></div>
+    <div class="plx chain" data-depth="22" style="position:absolute"><svg width="280" height="145" viewBox="0 0 290 150" fill="none" aria-hidden="true">
 <defs>
  <linearGradient id="ctop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E8C766"/><stop offset="1" stop-color="#C9A227"/></linearGradient>
  <linearGradient id="cleft" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1F4E8C"/><stop offset="1" stop-color="#122c52"/></linearGradient>
  <linearGradient id="cright" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2c66b5"/><stop offset="1" stop-color="#173a68"/></linearGradient>
 </defs>
-<g opacity=".9">
- <g transform="translate(8,44)">
-  <path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/>
- </g>
+<g opacity=".92">
+ <g transform="translate(8,44)"><path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/></g>
  <path d="M92 84 L118 74" stroke="#E8C766" stroke-width="2.5" stroke-dasharray="5 6"/>
- <g transform="translate(112,28)">
-  <path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/>
- </g>
+ <g transform="translate(112,28)"><path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/></g>
  <path d="M196 68 L222 58" stroke="#E8C766" stroke-width="2.5" stroke-dasharray="5 6"/>
- <g transform="translate(216,12)">
-  <path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/>
- </g>
+ <g transform="translate(216,12)"><path d="M40 0 80 20 40 40 0 20Z" fill="url(#ctop)"/><path d="M0 20 40 40V88L0 68Z" fill="url(#cleft)"/><path d="M80 20 40 40V88L80 68Z" fill="url(#cright)"/></g>
 </g></svg></div>
   </div>
   <div class="hero-copy">
-    <span class="kicker">ÉDITORIAL — BANQUE · FINANCE · MONÉTIQUE · INNOVATION</span>
+    <span class="kicker">ÉDITORIAL — BANQUE · FINANCE · MONÉTIQUE · SOUVERAINETÉ</span>
     <h1>À Libreville, la <em>monnaie de demain</em> entre en amphithéâtre</h1>
-    <p class="sub">L'expert camerounais Armand Gaetan NGUETI conduit à la BGFI Business School le premier cours magistral de Master 2 consacré aux cryptomonnaies, à la blockchain, aux stablecoins et aux monnaies numériques de banque centrale jamais dispensé en Afrique centrale. Un moment académique historique, au carrefour de la souveraineté monétaire et de l'innovation financière.</p>
-    <div class="dateline">Libreville, juillet 2026 — La Rédaction</div>
+    <p class="sub">Du 17 au 22 juillet 2026, dans les salles de la BGFI Business School, des banquiers en exercice vivent une première historique : le premier cours de Master 2 consacré aux cryptomonnaies, à la blockchain, aux stablecoins et aux monnaies numériques de banque centrale jamais dispensé en Afrique centrale. Récit immersif d'une semaine qui parle à tout un continent.</p>
+    <div class="dateline">Libreville · Juillet 2026</div>
   </div>
-  <div class="scroll-cue">Lire l'éditorial</div>
+  <div class="scroll-cue">Lire le récit</div>
 </header>
 
-<!-- ============ SECTION 1 ============ -->
-<section>
-  <div class="container">
-    <div class="sec-head rv"><span class="sec-num">01</span><h2>Une première dans <span class="gold">l'histoire académique</span> de la sous-région</h2></div>
-    <div class="lead-rule"></div>
-    <div class="prose two rv"><p>Il est des rentrées de cours qui ressemblent à des événements d'État. Du 17 au 22 juillet 2026, dans les amphithéâtres de la BGFI Business School à Libreville, des banquiers en exercice — cadres des filières Banque, Finance, Économie, Commerce et Monétique & Moyens de paiement — s'installent face à un tableau où s'écrit un mot que l'université d'Afrique centrale n'avait encore jamais inscrit au programme d'un Master 2 : blockchain. L'unité d'enseignement « Cryptomonnaies & Blockchain — Focus CBDC & Stablecoins », inscrite au format académique LMD pour l'année 2026-2027, est sans précédent dans l'histoire académique récente du Gabon et, plus largement, de l'Afrique centrale.</p><p>Quinze heures de cours magistral, de travaux dirigés, d'atelier et de projet final, réparties sur quatre journées : le format est ramassé, l'ambition immense. Car il ne s'agit pas d'initier des étudiants à une mode technologique. Il s'agit d'armer intellectuellement celles et ceux qui, demain matin, retourneront à leurs guichets, à leurs salles de marché, à leurs directions de la conformité et des moyens de paiement, pour y affronter une question que plus aucune banque au monde ne peut esquiver : que faire des monnaies numériques ?</p></div>
-    <div class="facts"><div class="fact rv"><b>15 h</b><span>de cours sur 4 jours — magistral, TD, atelier, projet final</span></div><div class="fact rv"><b>M2</b><span>Banque · Finance · Économie · Commerce · Monétique & Moyens de paiement</span></div><div class="fact rv"><b>2026-2027</b><span>année académique — format LMD, UE « SIBM1003c »</span></div><div class="fact rv"><b>ISO 21001</b><span>BBS, première grande école certifiée d'Afrique centrale (2018, obtenue en 2025)</span></div><div class="fact rv"><b>6</b><span>compétences visées, des fondamentaux à la recommandation professionnelle</span></div><div class="fact rv"><b>60 %</b><span>de l'évaluation : projet final — étude de cas intégrative en banque CEMAC</span></div></div>
-  </div>
-</section>
+<div class="chips"><div class="chip rv" data-d="0"><b>17–22 juillet 2026</b><span>Libreville, Gabon</span></div><div class="chip rv" data-d="1"><b>Master 2</b><span>Banque · Finance · Économie · Commerce · Monétique</span></div><div class="chip rv" data-d="2"><b>15 heures</b><span>4 journées · UE SIBM1003c · LMD</span></div><div class="chip rv" data-d="3"><b>ISO 21001</b><span>BGFI Business School</span></div></div>
 
-<div class="pull rv"><p>« Distinguer la valeur réelle de ces technologies de l'effet de mode » : la devise d'un cours qui forme des décideurs, pas des convertis.</p></div>
-
-<!-- ============ SECTION 2 : BBS ============ -->
-<section class="gilded">
-  <div class="container">
-    <div class="sec-head rv"><span class="sec-num">02</span><h2>BBS : l'écrin d'excellence que <span class="gold">l'Afrique centrale</span> s'est donné</h2></div>
-    <div class="lead-rule"></div>
-    <div class="prose two rv"><p>Le choix du lieu n'est pas un détail — il est un message. Créée en 2008 au sein du Groupe BGFIBank, leader bancaire incontesté de l'Afrique centrale, la BGFI Business School — « l'école supérieure de management » — s'est hissée en 2025 au rang de toute première grande école d'Afrique centrale certifiée ISO 21001:2018, la norme internationale des organismes d'éducation et de formation. Cette certification, qui atteste de la qualité du management pédagogique, de la centralité de l'apprenant et de l'amélioration continue des dispositifs de formation, place BBS dans un cercle très restreint d'institutions africaines capables de parler d'égal à égal avec les standards mondiaux de la formation bancaire et financière.</p><p>Adossée à un groupe présent dans une douzaine de pays, dont elle forme les quelque 3 000 collaborateurs, et forte d'un réseau d'alumni structuré, BBS n'est pas une école qui commente le secteur bancaire : elle est l'école que le secteur bancaire d'Afrique centrale s'est donnée à lui-même, un laboratoire où la banque de la sous-région pense sa propre transformation. Que ce soit précisément cette institution — dirigée par le Professeur Pamphile Mezui-Mbeng — qui ouvre la voie de l'enseignement des actifs numériques n'a rien d'un hasard : c'est la marque des maisons qui préfèrent précéder l'histoire plutôt que la subir.</p><p>En confiant ce cours inaugural à un expert extérieur de stature continentale, invité et accueilli à Libreville du 16 au 29 juillet 2026, l'école signe un acte de gouvernance académique exemplaire : chercher, où qu'elle se trouve, la meilleure expertise disponible, et la mettre au service de ses étudiants.</p></div>
-    <div class="gal rv">
-      <figure class="g1"><img src="/assets/33ee950fd6eb.webp" alt="Cérémonie de remise des diplômes, BGFI Business School"/><figcaption>BBS — cérémonie de remise des diplômes</figcaption></figure>
-      <figure class="g2"><img src="/assets/f745a15cf480.webp" alt="Une promotion d'étudiants de BBS"/><figcaption>Une promotion BBS — l'école supérieure de management</figcaption></figure>
-      <figure class="g3"><img src="/assets/71835d66850d.webp" alt="Diplômés BBS"/><figcaption>Remise des parchemins</figcaption></figure>
-      <figure class="g4"><img src="/assets/4d152d60abdc.webp" alt="Logo BGFI Business School" style="object-fit:contain;background:#fff;padding:12%"/><figcaption>Première école certifiée ISO 21001 d'Afrique centrale</figcaption></figure>
-      <figure class="g5"><img src="/assets/04f276b88152.webp" alt="Armand Gaetan NGUETI"/><figcaption>L'expert invité par la Direction Générale de BBS</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SECTION 3 : contexte ============ -->
 <section>
   <div class="container split">
+    <div>
+      <div class="sec-head rv"><span class="sec-num">01</span><h2>Le prologue : une première qui parle à tout un continent</h2></div>
+      <div class="lead-rule"></div>
+      <div class="prose rv"><p>Il est des rentrées de cours qui ressemblent à des événements d'État. Ce 17 juillet 2026, au deuxième étage de la BGFI Business School de Libreville — département pédagogique, salles Senghor, Mandela, Makeba —, des cadres bancaires en fonction prennent place face à un écran où s'affiche un intitulé que l'université d'Afrique centrale n'avait encore jamais inscrit au programme d'un Master 2 : « Cryptomonnaies & Blockchain — Focus CBDC & Stablecoins ». L'unité d'enseignement, délivrée au format académique LMD pour l'année 2026-2027, est sans précédent dans l'histoire académique récente du Gabon et, plus largement, de l'Afrique centrale.</p><p>Le calendrier lui-même semble avoir été écrit par l'histoire. Huit jours plus tôt, le 9 juillet 2026, la Banque des États de l'Afrique Centrale officialisait son adhésion au Système panafricain de paiement et de règlement (PAPSS) porté par Afreximbank — ouvrant aux six pays de la CEMAC l'accès à une infrastructure qui connecte désormais 28 pays africains et plus de 190 banques et fintechs. Quand les étudiants de Libreville s'assoient face à leur premier module, la question des paiements transfrontaliers africains n'est plus une abstraction de manuel : elle est la une de l'actualité monétaire de leur propre sous-région.</p><p>Quinze heures de cours magistral, de travaux dirigés, d'atelier et de projet final, réparties sur quatre journées : le format est ramassé, l'ambition immense. Car il ne s'agit pas d'initier des étudiants à une mode technologique. Il s'agit d'armer intellectuellement celles et ceux qui, la semaine suivante, retourneront à leurs salles de marché, à leurs directions de la conformité et des moyens de paiement, pour y affronter une question que plus aucune banque au monde ne peut esquiver : que faire des monnaies numériques ?</p></div>
+    </div>
     <div class="frame3d rv">
-      <div class="ph"><img src="/assets/bddc8b3d2b99.webp" alt="Armand Gaetan NGUETI"/></div>
-      <div class="tag">Zone CEMAC · Franc CFA numérique</div>
-    </div>
-    <div>
-      <div class="sec-head rv"><span class="sec-num">03</span><h2>Le moment monétaire africain : <span class="gold">pourquoi maintenant</span></h2></div>
-      <div class="lead-rule"></div>
-      <div class="prose rv"><p>Ce cours arrive à l'heure exacte où l'histoire monétaire de la sous-région s'accélère. La Banque des États de l'Afrique Centrale (BEAC) manifeste un intérêt de plus en plus marqué pour l'évolution du franc CFA vers une monnaie numérique de banque centrale — un chantier que documentent ses communications sur le projet de franc CFA numérique. Dans le même temps, les acteurs du secteur des cryptomonnaies, la communauté de l'innovation et les utilisateurs eux-mêmes exercent une pression croissante : coûts des transferts, lenteur des règlements transfrontaliers, exigences de conformité, concurrence de nouveaux instruments — autant de difficultés pratiques dans les mouvements d'actifs financiers auxquelles blockchain, stablecoins et altcoins prétendent répondre.</p><p>Le paysage réglementaire mondial, lui, s'est déjà mis en mouvement : règlement européen MiCA, GENIUS Act américain de 2025, règlement du marché financier de la CEMAC de 2022, systèmes panafricains de paiement comme le PAPSS d'Afreximbank face au réseau SWIFT, expérience pionnière — et riche d'enseignements critiques — de l'eNaira nigérian documentée par le FMI, travaux de la Banque des Règlements Internationaux sur les CBDC en Afrique. L'Afrique centrale ne peut plus se contenter d'observer : il lui faut des cadres capables d'analyser, de comparer et de décider. C'est très exactement la compétence que ce cours a été conçu pour produire.</p></div>
+      <div class="ph"><img src="/assets/cours-bbs-totem-full.webp" alt="L'expert devant le totem de la BGFI Business School — l'école supérieure de management, Libreville" loading="lazy"/></div>
+      <div class="tag">L'expert devant le totem de la BGFI Business School — l'école supérieure de management, Libreville</div>
     </div>
   </div>
 </section>
 
-<div class="pull rv"><p>La première grande école certifiée ISO d'Afrique centrale confie le premier cours de Master sur les monnaies numériques au premier consultant BMM certifié du continent.</p></div>
-
-<!-- ============ SECTION 4 : l'homme ============ -->
 <section class="gilded">
-  <div class="container split">
-    <div>
-      <div class="sec-head rv"><span class="sec-num">04</span><h2>L'homme de la situation : un parcours <span class="gold">qui parle de lui-même</span></h2></div>
-      <div class="lead-rule"></div>
-      <div class="prose rv"><p>Le choix de l'expert n'est pas anodin — il est, au contraire, d'une cohérence remarquable. Armand Gaetan NGUETI, 37 ans, est l'une des figures les plus singulières de la technologie financière africaine. Président fondateur de la Blockchain Association of Cameroon (BAC), Président Afrique de la Government Blockchain Association (GBA), fondateur et CEO d'UBTS International Corp (États-Unis) et Président Afrique de PIPRA Solutions, il détient une distinction unique au monde : il est, à ce jour, le premier et le seul consultant certifié en Modèle de Maturité Blockchain (BMM) originaire d'Afrique.</p><p>Son année 2025 a scellé sa stature internationale : délégué T20 — le groupe d'engagement Think20 — lors du sommet du G20 en Afrique du Sud, il préside également, depuis Washington, le Groupe de travail sur la chaîne d'approvisionnement alimentaire de la GBA, premier leader africain nommé à ce poste stratégique. Coordinateur exécutif pour la région CEEAC du Sommet africain de l'économie numérique (AfriDES), il porte la voix des onze pays de l'Afrique centrale élargie dans l'agenda numérique continental.</p><p>Mais c'est peut-être son ancrage dans le réel qui impressionne le plus les praticiens : inventeur de CAMTRADE PASS, initiative socio-technologique qui a donné au label « Made in Cameroun » une traçabilité de bout en bout par blockchain, IA et IoT, il a démontré sur le terrain ce que la théorie promet dans les manuels — jusqu'à l'inclusion financière de producteurs obtenant des financements bancaires sur la foi d'historiques d'activités certifiés, sans actifs tangibles. Spécialiste de la blockchain appliquée à l'inclusion financière et à la traçabilité en Afrique, intervenant reconnu du débat public sur la régulation des actifs numériques en zone CEMAC, formateur de très haut niveau depuis son statut de Microsoft Certified Trainer obtenu à Bangalore à seulement 24 ans, chercheur exécutif en sciences de gestion à l'Université Paul-Valéry Montpellier 3 : l'homme cumule les trois légitimités que ce cours exigeait — celle du stratège international, celle du bâtisseur d'écosystèmes et celle du pédagogue.</p><p>Vingt années de formations de très haut niveau, des amphithéâtres de Bangalore aux universités de Lubumbashi, des programmes Microsoft aux écoles supérieures de commerce, ont forgé chez lui une conviction que l'on retrouve à chaque page du syllabus qu'il a intégralement conçu : la technologie ne s'enseigne pas comme un dogme, elle s'enseigne comme un arbitrage.</p></div>
-    </div>
-    <div class="frame3d rv" style="order:2">
-      <div class="ph"><img src="/assets/2eb16c8e00fc.webp" alt="Armand Gaetan NGUETI"/></div>
-      <div class="tag">1er consultant BMM certifié d'Afrique</div>
-    </div>
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">02</span><h2>BBS : l'écrin d'excellence que l'Afrique centrale s'est donné</h2></div>
+    <div class="lead-rule"></div>
+    <div class="prose two rv"><p>Le choix du lieu n'est pas un détail — il est un message. Créée en 2008 au sein du Groupe BGFIBank, leader bancaire de l'Afrique centrale, la BGFI Business School s'est hissée en 2025 au rang de toute première grande école d'Afrique centrale certifiée ISO 21001:2018, la norme internationale des organismes d'éducation et de formation. Le panneau du département pédagogique l'affiche sans ostentation, à côté des noms des salles de cours ; la certification, elle, place BBS dans un cercle très restreint d'institutions africaines capables de parler d'égal à égal avec les standards mondiaux de la formation bancaire et financière.</p><p>Adossée à un groupe présent dans une douzaine de pays, dont elle forme les quelque 3 000 collaborateurs, et forte d'un réseau d'alumni structuré, BBS n'est pas une école qui commente le secteur bancaire : elle est l'école que le secteur bancaire d'Afrique centrale s'est donnée à lui-même — un laboratoire où la banque de la sous-région pense sa propre transformation, sous l'ambition stratégique « BGFI 2030 » que rappellent les bannières dans ses couloirs. Que ce soit précisément cette institution, dirigée par le Professeur Pamphile Mezui-Mbeng, qui ouvre la voie de l'enseignement des actifs numériques n'a rien d'un hasard : c'est la marque des maisons qui préfèrent précéder l'histoire plutôt que la subir.</p><p>En invitant à Libreville, du 16 au 29 juillet 2026, un expert extérieur de stature continentale pour animer ce séminaire fondateur, l'école signe un acte de gouvernance académique exemplaire : chercher, où qu'elle se trouve, la meilleure expertise disponible, et la mettre au service de ses étudiants.</p></div>
+    <div class="gal">
+<figure class="g-a irv" data-d="0"><img src="/assets/bbs-graduation.webp" alt="Cérémonie de remise des diplômes — BGFI Business School" loading="lazy"/><figcaption>Cérémonie de remise des diplômes — BGFI Business School</figcaption></figure>
+<figure class="g-b irv" data-d="1"><img src="/assets/bbs-officiels.webp" alt="Une promotion BBS entourée des officiels" loading="lazy"/><figcaption>Une promotion BBS entourée des officiels</figcaption></figure>
+<figure class="g-c irv" data-d="2"><img src="/assets/bbs-promo-large.webp" alt="Les étudiants de BBS — l'école supérieure de la banque" loading="lazy"/><figcaption>Les étudiants de BBS — l'école supérieure de la banque</figcaption></figure>
+<figure class="g-d contain irv" data-d="3"><img src="/assets/bbs-logo.webp" alt="Première grande école certifiée ISO 21001:2018 d'Afrique centrale" loading="lazy"/><figcaption>Première grande école certifiée ISO 21001:2018 d'Afrique centrale</figcaption></figure>
+<figure class="g-e irv" data-d="4"><img src="/assets/bbs-etage.webp" alt="Département pédagogique — salles Senghor, Mandela, Makeba, Kessel" loading="lazy"/><figcaption>Département pédagogique — salles Senghor, Mandela, Makeba, Kessel</figcaption></figure>
+<figure class="g-a irv" data-d="5"><img src="/assets/cours-bgfi2030.webp" alt="Sous la bannière de l'ambition stratégique « BGFI 2030 »" loading="lazy"/><figcaption>Sous la bannière de l'ambition stratégique « BGFI 2030 »</figcaption></figure>
+</div>
   </div>
 </section>
 
-<!-- ============ SECTION 5 : le cours ============ -->
 <section>
   <div class="container">
-    <div class="sec-head rv"><span class="sec-num">05</span><h2>Dans la salle de cours : une ingénierie pédagogique <span class="gold">d'orfèvre</span></h2></div>
+    <div class="sec-head rv"><span class="sec-num">03</span><h2>Dans l'amphithéâtre : immersion au cœur d'une semaine historique</h2></div>
     <div class="lead-rule"></div>
-    <div class="prose two rv"><p>Le syllabus — conçu de bout en bout par l'expert, avec ses supports dédiés — est en soi une leçon de design pédagogique. Quatre journées, quatre paliers cognitifs empruntés à la taxonomie de Bloom : connaître et comprendre (la monnaie, la confiance, la blockchain, Bitcoin), appliquer et analyser (le panorama des cryptomonnaies, Ethereum et les smart contracts, les typologies de stablecoins et leurs risques), analyser et différencier (les CBDC, leurs modèles d'intermédiation, la lecture critique africaine de l'eNaira), enfin évaluer et créer (stablecoins contre CBDC, dollarisation, souveraineté, synthèse professionnelle).</p><p>Pas une ligne de code : le parti pris est assumé. L'approche est « métier et monétique » — chaque notion est reliée à ses effets concrets sur les paiements : coûts, rapidité, règlement, conformité, concurrence. Les travaux dirigés confrontent le paiement par carte à Bitcoin, le stablecoin à SWIFT et au PAPSS ; l'atelier interroge : à quoi servirait une CBDC en Afrique et en Europe ? Et le projet final place chaque étudiant dans le fauteuil du responsable des moyens de paiement d'une banque commerciale de la zone CEMAC, sommé de recommander — ou non — l'intégration d'une monnaie digitale parmi trois options (stablecoin, CBDC, statu quo) et de justifier son arbitrage : coûts, rapidité, inclusion, conformité, souveraineté.</p><p>Six compétences structurent les acquis, des fondamentaux à la capacité intégratrice de formuler et défendre une recommandation professionnelle contextualisée, en passant par l'analyse monétique, l'évaluation réglementaire (LBC/FT, protection du consommateur, cadres BEAC et MiCA) et l'appréciation stratégique de la souveraineté monétaire et de la géopolitique des paiements. L'évaluation elle-même respecte l'alignement LMD : quiz diagnostique non noté, contrôle continu à 40 %, projet final — note écrite et soutenance — à 60 %. Une bibliographie exigeante accompagne le tout, de Nakamoto (2008) aux BIS Papers sur les CBDC en Afrique, du working paper du FMI sur l'eNaira aux rapports 2025 de Chainalysis, jusqu'aux textes MiCA, GENIUS Act et au règlement du marché financier CEMAC.</p><p>Développer « l'esprit critique nécessaire pour distinguer la valeur réelle de ces technologies de l'effet de mode » : la phrase, tirée du descriptif du cours, pourrait servir de devise à toute la démarche. On est loin, très loin, de l'évangélisme crypto. On est dans la formation de décideurs.</p></div>
-    <div class="days"><div class="day rv"><span class="dur">≈ 4 h</span><div class="dnum">1</div><span class="dbloom">Connaître · Comprendre</span><h3>Fondamentaux : monnaie, confiance et blockchain</h3><p>Fonctions et formes de la monnaie, principes du registre distribué, première approche de Bitcoin. TD : paiement par carte vs Bitcoin.</p></div><div class="day rv"><span class="dur">≈ 4 h 15</span><div class="dnum">2</div><span class="dbloom">Appliquer · Analyser</span><h3>Cryptomonnaies & stablecoins : usages et modèles</h3><p>Ethereum et smart contracts, typologies et risques des stablecoins. TD : stablecoin vs SWIFT vs PAPSS. Cadres BEAC, MiCA, GENIUS Act.</p></div><div class="day rv"><span class="dur">≈ 3 h 30</span><div class="dnum">3</div><span class="dbloom">Analyser · Différencier</span><h3>CBDC : les monnaies digitales de banque centrale</h3><p>Typologies et modèles d'intermédiation, lecture critique africaine (eNaira). Atelier : à quoi servirait une CBDC en Afrique / Europe ?</p></div><div class="day rv"><span class="dur">≈ 3 h 15</span><div class="dnum">4</div><span class="dbloom">Évaluer · Créer</span><h3>Comparaisons, enjeux stratégiques & synthèse</h3><p>Stablecoins vs CBDC, dollarisation et souveraineté. Projet final : étude de cas intégrative — banque commerciale en zone CEMAC.</p></div></div>
-    <h3 class="serif rv" style="margin-top:3.4rem;font-size:1.7rem;color:var(--champ);font-weight:700">Six compétences, un profil de sortie</h3>
-    <div class="comps"><div class="comp rv"><div class="hex">C1</div><div><b>Fondamentaux</b><span>Maîtriser le vocabulaire et les concepts de la blockchain et des actifs numériques.</span></div></div><div class="comp rv"><div class="hex">C2</div><div><b>Distinction</b><span>Caractériser et distinguer cryptomonnaies, stablecoins et CBDC.</span></div></div><div class="comp rv"><div class="hex">C3</div><div><b>Monétique</b><span>Analyser les enjeux de paiement : coûts, rapidité, transfrontalier, désintermédiation.</span></div></div><div class="comp rv"><div class="hex">C4</div><div><b>Réglementaire</b><span>Évaluer la conformité : LBC/FT, protection du consommateur, cadres BEAC / MiCA.</span></div></div><div class="comp rv"><div class="hex">C5</div><div><b>Stratégique</b><span>Apprécier la souveraineté monétaire et la géopolitique des paiements.</span></div></div><div class="comp rv"><div class="hex">C6</div><div><b>Intégratrice</b><span>Formuler et défendre une recommandation professionnelle contextualisée.</span></div></div></div>
+    <div class="prose two rv"><p>Il faut imaginer la scène, car les photographies la racontent mieux qu'un communiqué. Sur la table du formateur, une tablette affiche la couverture du jour : « Cours Blockchain — JOUR 3. CBDC : les monnaies digitales de banque centrale ». À côté, un ordinateur portable ouvre les consignes du travail dirigé ; des feuilles annotées circulent — tableaux comparatifs à compléter, carte bancaire contre Bitcoin, stablecoin contre SWIFT contre PAPSS. Face au formateur, des hommes en costume sombre — cadres de banque en exercice — ordinateurs ouverts, documents en main, débattent.</p><p>C'est là toute la singularité de cette promotion : elle n'est pas composée d'étudiants en quête d'un premier emploi, mais de banquiers occupant déjà des responsabilités dans l'architecture bancaire de la sous-région. Lorsque l'atelier du troisième jour demande « à quoi servirait une CBDC en Afrique et en Europe ? », les réponses ne sortent pas des manuels : elles sortent des salles de marché, des directions de la conformité, des services monétique où ces participants travaillent chaque matin.</p><p>L'exercice le plus parlant reste le travail dirigé du deuxième jour : régler 50 000 FCFA chez un commerçant par carte bancaire, puis envoyer l'équivalent à un proche à l'étranger en Bitcoin — décrire les deux circuits, les comparer, préparer une restitution orale de deux minutes. En quelques heures, des notions réputées ésotériques — intermédiaires, consensus, irréversibilité — deviennent des critères d'arbitrage professionnel. C'est exactement la promesse du descriptif du cours : développer « l'esprit critique nécessaire pour distinguer la valeur réelle de ces technologies de l'effet de mode ». On est loin, très loin, de l'évangélisme crypto. On est dans la formation de décideurs.</p></div>
+    <div class="gal">
+<figure class="g-a irv" data-d="0"><img src="/assets/cours-jour3.webp" alt="Jour 3 — CBDC : les monnaies digitales de banque centrale" loading="lazy"/><figcaption>Jour 3 — CBDC : les monnaies digitales de banque centrale</figcaption></figure>
+<figure class="g-b irv" data-d="1"><img src="/assets/cours-jour3-docs.webp" alt="Travaux dirigés — tableaux comparatifs et études de cas" loading="lazy"/><figcaption>Travaux dirigés — tableaux comparatifs et études de cas</figcaption></figure>
+<figure class="g-c irv" data-d="2"><img src="/assets/cours-salle-large.webp" alt="La salle de cours — cadres bancaires en formation" loading="lazy"/><figcaption>La salle de cours — cadres bancaires en formation</figcaption></figure>
+<figure class="g-d irv" data-d="3"><img src="/assets/cours-ipad-jour3.webp" alt="Supports de cours conçus par l'expert" loading="lazy"/><figcaption>Supports de cours conçus par l'expert</figcaption></figure>
+<figure class="g-e irv" data-d="4"><img src="/assets/cours-ecrans.webp" alt="L'éditorial du cours affiché sur les écrans" loading="lazy"/><figcaption>L'éditorial du cours affiché sur les écrans</figcaption></figure>
+<figure class="g-f irv" data-d="5"><img src="/assets/cours-jour3-td.webp" alt="Débats et restitutions orales des participants" loading="lazy"/><figcaption>Débats et restitutions orales des participants</figcaption></figure>
+<figure class="g-g irv" data-d="6"><img src="/assets/cours-ecrans-2.webp" alt="Postes de travail des cadres en formation" loading="lazy"/><figcaption>Postes de travail des cadres en formation</figcaption></figure>
+<figure class="g-a irv" data-d="7"><img src="/assets/cours-salle-td.webp" alt="Travaux dirigés — analyse comparative en séance" loading="lazy"/><figcaption>Travaux dirigés — analyse comparative en séance</figcaption></figure>
+</div>
   </div>
 </section>
 
-<div class="pull rv"><p>Il y a des alignements qui ne doivent rien au hasard et tout à la vision.</p></div>
+<div class="pull rv"><p>L'Afrique ne doit pas être spectatrice de son destin monétaire. Elle doit en devenir l'opératrice — et cela commence dans une salle de cours.</p></div>
 
-<!-- ============ SECTION 6 : portée ============ -->
 <section class="gilded">
-  <div class="container split">
-    <div class="frame3d rv">
-      <div class="ph"><img src="/assets/065497c9985c.webp" alt="Armand Gaetan NGUETI"/></div>
-      <div class="tag">Former des décideurs</div>
-    </div>
-    <div>
-      <div class="sec-head rv"><span class="sec-num">06</span><h2>Ce que ce cours change — <span class="gold">et ce qu'il annonce</span></h2></div>
-      <div class="lead-rule"></div>
-      <div class="prose rv"><p>Les étudiants de cette session ne sont pas des néophytes en quête de reconversion : ce sont des banquiers en fonction, occupant des responsabilités variées dans l'architecture bancaire de la sous-région. C'est ce qui donne à cette semaine de juillet sa portée systémique. Chaque compétence acquise à Libreville irriguera dès la semaine suivante une direction des risques, un comité de conformité, un service monétique, une réflexion stratégique d'établissement. Le cours renforce très exactement le profil de sortie que le système LMD exige des diplômés de Master en banque, finance, économie et commerce : des compétences directement mobilisables auprès des banques, des fintechs, des opérateurs de Mobile Money, des régulateurs — BEAC, COBAC, COSUMAF — et des institutions régionales.</p><p>Il faut mesurer la convergence des symboles : la première grande école certifiée ISO de l'Afrique centrale, adossée au premier groupe bancaire de la sous-région, confie le premier cours de Master consacré aux monnaies numériques au premier consultant BMM certifié du continent — au moment précis où la banque centrale régionale explore l'avenir numérique du franc CFA. Il y a des alignements qui ne doivent rien au hasard et tout à la vision.</p><p>L'éditorialiste se gardera de prophétiser le destin des stablecoins ou le calendrier d'une éventuelle CBDC de la CEMAC — le cours lui-même enseigne précisément à se méfier des certitudes faciles. Mais une chose est acquise : le 22 juillet 2026 au soir, l'Afrique centrale comptera une promotion de cadres bancaires capables d'analyser, de comparer et de recommander en professionnels des moyens de paiement, sur le dossier le plus stratégique de la décennie monétaire. C'est ainsi que les places financières se construisent : non par décret, mais par la connaissance. Et c'est ainsi qu'une région cesse d'être spectatrice de son destin monétaire pour en devenir, enfin, l'opératrice.</p></div>
-      <div class="sig rv">
-        <div class="line"></div><b>La Rédaction</b><span>Libreville · juillet 2026</span><div class="line"></div>
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">04</span><h2>Quatre journées, quatre paliers : le voyage pédagogique intégral</h2></div>
+    <div class="lead-rule"></div>
+    <div class="prose rv"><p>Le syllabus — conçu de bout en bout par l'expert, avec ses supports dédiés — est une leçon de design pédagogique. Quatre journées gravissent les paliers de la taxonomie de Bloom, du « connaître » à l'« évaluer et créer », sans une seule ligne de code : l'approche est résolument métier et monétique, chaque notion étant reliée à ses effets concrets sur les paiements — coûts, rapidité, règlement, conformité, concurrence.</p></div>
+    <div class="days"><div class="day rv" data-d="0"><span class="dur">≈ 4 h</span><div class="dnum">Jour 1</div>
+<span class="dbloom">Connaître · Comprendre</span><h3>Fondamentaux : monnaie, confiance et blockchain</h3><ul><li>M1 — Pourquoi la crypto, lien avec la monétique (30 min)</li><li>M2 — Rappels sur la monnaie : fonctions, formes, création monétaire (60 min)</li><li>M3 — Origines et principes de la blockchain : registre, blocs, consensus, immuabilité (75 min)</li><li>M4 — Première approche des cryptomonnaies ; Bitcoin (45 min)</li><li>TD1 — Étude comparée : paiement par carte vs Bitcoin (30 min)</li></ul></div><div class="day rv" data-d="1"><span class="dur">≈ 4 h 15</span><div class="dnum">Jour 2</div>
+<span class="dbloom">Appliquer · Analyser</span><h3>Cryptomonnaies & stablecoins : usages et modèles</h3><ul><li>M5 — Panorama des cryptomonnaies ; Ethereum et smart contracts ; tokens (45 min)</li><li>M6 — Les stablecoins : typologies, exemples, échecs, lien monétique (75 min)</li><li>M7 — Stablecoins vs monnaie bancaire et monnaie électronique ; risques (45 min)</li><li>TD2 — Étude de cas : paiement international, stablecoin vs SWIFT vs PAPSS (45 min)</li><li>M8 — Enjeux réglementaires : BEAC, MiCA, GENIUS Act (45 min)</li></ul></div><div class="day rv" data-d="2"><span class="dur">≈ 3 h 30</span><div class="dnum">Jour 3</div>
+<span class="dbloom">Analyser · Différencier</span><h3>CBDC : les monnaies digitales de banque centrale</h3><ul><li>M9 — Introduction aux CBDC ; distinction crypto / stablecoin / monnaie électronique (30 min)</li><li>M10 — Typologies de CBDC ; modèles d'intermédiation (45 min)</li><li>M11 — Cas d'usage des CBDC ; lecture critique africaine : l'eNaira (45 min)</li><li>TD3 — Atelier : à quoi servirait une CBDC en Afrique / Europe ? (45 min)</li><li>M12 — Impacts sur l'écosystème des paiements ; désintermédiation (45 min)</li></ul></div><div class="day rv" data-d="3"><span class="dur">≈ 3 h 15</span><div class="dnum">Jour 4</div>
+<span class="dbloom">Évaluer · Créer</span><h3>Comparaisons, enjeux stratégiques & synthèse</h3><ul><li>M13 — Stablecoins vs CBDC : analyse comparative (45 min)</li><li>M14 — Enjeux géopolitiques : dollarisation, souveraineté, concurrence (45 min)</li><li>M15 — Synthèse et perspective professionnelle ; débouchés (30 min)</li><li>Projet final — Étude de cas intégrative : banque commerciale en zone CEMAC (60-75 min)</li></ul></div></div>
+    <h3 class="serif rv" style="margin-top:3rem;font-size:1.6rem;color:var(--champ);font-weight:700">L'évaluation, à l'alignement LMD près</h3>
+    <div class="evals"><div class="eval rv" data-d="0"><b>0 %</b><span>Quiz diagnostique d'entrée — non noté, pour ajuster le rythme</span></div><div class="eval rv" data-d="1"><b>40 %</b><span>Contrôle continu — quiz quotidiens, TD1-TD3, participation</span></div><div class="eval rv" data-d="2"><b>60 %</b><span>Projet final — note écrite et soutenance : recommander (ou non) l'intégration d'une monnaie digitale — stablecoin, CBDC ou statu quo — pour une banque commerciale de la zone CEMAC, et justifier l'arbitrage : coûts, rapidité, inclusion, conformité, souveraineté</span></div></div>
+    <div class="container split" style="margin-top:2.6rem">
+      <div class="prose rv"><p>Cinquante-cinq heures de travail étudiant estimées — présentiel, lectures, projet — pour environ deux crédits ECTS ; une bibliographie qui va de Nakamoto (2008) aux BIS Papers sur les CBDC en Afrique, du working paper du FMI sur l'eNaira aux rapports 2025 de Chainalysis, jusqu'aux textes MiCA, GENIUS Act et au règlement du marché financier CEMAC de 2022. Six compétences structurent les acquis — et c'est ici que le cours cesse d'être un événement local pour devenir une affaire continentale.</p></div>
+      <div class="frame3d rv">
+        <div class="ph"><img src="/assets/portrait-nb.webp" alt="Armand Gaetan NGUETI" loading="lazy"/></div>
+        <div class="tag">Le pédagogue — vingt ans de formations de haut niveau</div>
       </div>
     </div>
   </div>
 </section>
 
+<section>
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">05</span><h2>Six compétences, cinq horizons : ce que ces acquis changent pour l'Afrique</h2></div>
+    <div class="lead-rule"></div>
+    <div class="comps"><div class="comp rv" data-d="0"><div class="hex">C1</div><div><b>Fondamentaux</b><span>Maîtriser le vocabulaire et les concepts de la blockchain et des actifs numériques.</span></div></div><div class="comp rv" data-d="1"><div class="hex">C2</div><div><b>Distinction</b><span>Caractériser et distinguer cryptomonnaies, stablecoins et CBDC.</span></div></div><div class="comp rv" data-d="2"><div class="hex">C3</div><div><b>Monétique</b><span>Analyser les enjeux de paiement : coûts, rapidité, transfrontalier, désintermédiation.</span></div></div><div class="comp rv" data-d="3"><div class="hex">C4</div><div><b>Réglementaire</b><span>Évaluer la conformité : LBC/FT, protection du consommateur, cadres BEAC / MiCA.</span></div></div><div class="comp rv" data-d="4"><div class="hex">C5</div><div><b>Stratégique</b><span>Apprécier la souveraineté monétaire et la géopolitique des paiements.</span></div></div><div class="comp rv" data-d="5"><div class="hex">C6</div><div><b>Intégratrice</b><span>Formuler et défendre une recommandation professionnelle contextualisée.</span></div></div></div>
+    <div class="container split" style="margin-top:2.8rem">
+      <div class="frame3d rv">
+        <div class="ph"><img src="/assets/portrait-bleu.webp" alt="Armand Gaetan NGUETI" loading="lazy"/></div>
+        <div class="tag">Le stratège — délégué T20 au G20, président Afrique de la GBA</div>
+      </div>
+      <div class="prose rv"><p>Ces six compétences ne sont pas des lignes de CV : ce sont des clés de lecture du moment monétaire africain. Car partout sur le continent, les chantiers qu'elles éclairent sont déjà ouverts.</p></div>
+    </div>
+    <div class="regions"><div class="region rv" data-d="0"><span class="rtag">Afrique centrale — CEMAC</span><h3>Le laboratoire immédiat</h3><p>C'est ici que les acquis s'appliquent dès la semaine suivante. L'adhésion de la BEAC au PAPSS, officialisée le 9 juillet 2026, doit être opérationnalisée d'ici fin 2026 : chaque banque de la CEMAC devra raccorder ses systèmes, former ses équipes, repenser ses corridors de paiement — précisément ce que le TD2 du cours fait simuler. S'y ajoutent les communications de la BEAC sur le projet de franc CFA numérique, le règlement du marché financier CEMAC de 2022, la supervision COBAC et COSUMAF, et des initiatives de terrain comme CAMTRADE PASS au Cameroun, qui applique déjà blockchain, IA et IoT à la traçabilité du « Made in Cameroon ». La compétence C6 — recommander, en professionnel, stablecoin, CBDC ou statu quo pour une banque de la zone — est ici littéralement le sujet du moment.</p></div><div class="region rv" data-d="1"><span class="rtag">Afrique de l'Ouest</span><h3>Les leçons du pionnier</h3><p>Le Nigeria a offert au continent sa première expérience grandeur nature avec l'eNaira, lancé en 2021 — et le cours l'étudie sans complaisance, à travers la lecture critique qu'en a livrée le FMI : une adoption initiale limitée, riche d'enseignements sur le design, l'incitation et la confiance. Côté UEMOA, la BCEAO avance avec prudence pendant que le PAPSS, né dans la zone monétaire ouest-africaine, étend son réseau. Entre la vitalité du Mobile Money, la jeunesse des fintechs de Lagos, Dakar ou Abidjan et la rigueur des banques centrales, l'Afrique de l'Ouest illustre la compétence C2 : distinguer ce qui relève de la crypto spéculative, du stablecoin d'usage et de la monnaie souveraine numérique.</p></div><div class="region rv" data-d="2"><span class="rtag">Afrique du Nord</span><h3>La sortie de la zone grise</h3><p>Le Maroc offre le cas d'école réglementaire : après des années d'interdiction générale des transactions en crypto-actifs, le royaume a rendu public l'avant-projet de loi 42-25, d'inspiration MiCA, qui placerait le secteur sous la double supervision de Bank Al-Maghrib et de l'AMMC — l'émission de stablecoins étant réservée aux établissements agréés — pendant que la banque centrale poursuit ses études sur un e-dirham. C'est la compétence C4 en action : lire un cadre réglementaire, comprendre la répartition des tutelles, anticiper les obligations LBC/FT. Pour les juristes et conformité officers formés à Libreville, le mouvement nord-africain est un référentiel de comparaison immédiat.</p></div><div class="region rv" data-d="3"><span class="rtag">Afrique du Sud & australe</span><h3>L'école de la rigueur expérimentale</h3><p>Depuis 2018, la South African Reserve Bank déroule avec méthode le programme Project Khokha : règlement interbancaire tokenisé d'abord, puis, avec Khokha 2, l'expérimentation d'une CBDC de gros et de jetons obligataires aux côtés des grandes banques du pays et du JSE ; participation à Project Dunbar avec la BRI et les banques centrales d'Australie, de Malaisie et de Singapour ; et désormais des travaux associant CBDC de gros et stablecoins bancaires pour les paiements régionaux. L'Afrique australe enseigne la compétence C5 : la souveraineté monétaire ne se proclame pas, elle s'expérimente — preuve de concept après preuve de concept.</p></div><div class="region rv" data-d="4"><span class="rtag">Horizon continental — ZLECAf</span><h3>La convergence des chantiers</h3><p>Au-dessus des régions, un dessein commun : la Zone de libre-échange continentale africaine et son marché de plus d'un milliard de consommateurs, dont le talon d'Achille reste le coût et la lenteur des paiements transfrontaliers. Avec 28 pays connectés au PAPSS, des cadres externes qui se stabilisent — MiCA en Europe, GENIUS Act aux États-Unis — et des banques centrales africaines qui passent des études aux pilotes, la décennie qui s'ouvre exigera une génération entière de cadres capables d'analyser, de comparer et de décider. La promotion de Libreville en est un prototype. Elle ne doit pas rester une exception.</p></div></div>
+  </div>
+</section>
+
+<section class="gilded">
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">06</span><h2>L'appel : à toutes les parties prenantes du continent</h2></div>
+    <div class="lead-rule"></div>
+    <div class="container split">
+      <div class="prose rv"><p>Au terme de la semaine, l'expert international Armand Gaetan NGUETI — délégué T20 au sommet du G20 en Afrique du Sud, président Afrique de la Government Blockchain Association, premier et unique consultant certifié BMM du continent — n'a pas conclu par un satisfecit. Il a conclu par une interpellation. Son équipe de communication stratégique la relaie ici, fidèlement, à l'attention de toutes les parties prenantes d'Afrique :</p></div>
+      <div class="frame3d rv">
+        <div class="ph"><img src="/assets/portrait-plaid-assis.webp" alt="Armand Gaetan NGUETI" loading="lazy"/></div>
+      </div>
+    </div>
+    <div class="calls"><div class="call rv" data-d="0"><b>Aux banques centrales et aux régulateurs</b><p>La fenêtre est ouverte : le PAPSS est là, les études CBDC mûrissent, les cadres MiCA et GENIUS Act fixent des référentiels externes. Dotez vos équipes de la compétence d'arbitrage — pas seulement de la prudence. La souveraineté monétaire du continent se joue dans les cinq prochaines années.</p></div><div class="call rv" data-d="1"><b>Aux banques commerciales</b><p>Le raccordement de la CEMAC au PAPSS d'ici fin 2026 n'est pas un projet informatique : c'est un changement de modèle. Formez vos directions monétique, risques et conformité dès maintenant — la promotion de Libreville montre que quinze heures bien conçues suffisent à transformer le regard d'un cadre.</p></div><div class="call rv" data-d="2"><b>Aux fintechs et opérateurs de Mobile Money</b><p>Vous avez démontré que l'Afrique pouvait inventer ses propres usages financiers. Le prochain chapitre — stablecoins régulés, interopérabilité avec les CBDC, corridors panafricains — s'écrira avec ceux qui parlent à la fois le langage de l'innovation et celui de la conformité.</p></div><div class="call rv" data-d="3"><b>Aux universités et grandes écoles</b><p>La BGFI Business School vient de prouver que c'est possible : un syllabus rigoureux, aligné LMD, ancré dans les cas africains, sans une ligne de code. Répliquez-le, adaptez-le, dépassez-le — de Dakar à Nairobi, de Casablanca au Cap. Chaque promotion formée est une brique de souveraineté.</p></div><div class="call rv" data-d="4"><b>Aux gouvernements et aux parlements</b><p>Les cadres juridiques ne peuvent plus attendre que les usages soient installés. L'exemple marocain montre qu'une sortie de zone grise ordonnée est possible ; l'exemple sud-africain, qu'une expérimentation publique méthodique est féconde. Légiférez en connaissance de cause — et formez ceux qui écriront les textes.</p></div><div class="call rv" data-d="5"><b>À la jeunesse africaine</b><p>Les métiers des paiements, de la conformité et de la stratégie numérique qui s'ouvrent sur ce continent n'exigent pas que vous soyez développeurs. Ils exigent que vous compreniez. Ce cours a été conçu pour des débutants complets en actifs numériques : la porte est plus ouverte que vous ne le croyez. Franchissez-la.</p></div></div>
+    <h3 class="serif rv" style="margin-top:4rem;font-size:1.6rem;color:var(--champ);font-weight:700">La promotion historique de juillet 2026</h3>
+    <div class="gal">
+<figure class="g-a irv" data-d="0"><img src="/assets/cours-groupe-8.webp" alt="La promotion au pied du totem BBS" loading="lazy"/><figcaption>La promotion au pied du totem BBS</figcaption></figure>
+<figure class="g-b irv" data-d="1"><img src="/assets/cours-selfie.webp" alt="L'expert et les cadres bancaires de la promotion" loading="lazy"/><figcaption>L'expert et les cadres bancaires de la promotion</figcaption></figure>
+<figure class="g-c irv" data-d="2"><img src="/assets/cours-groupe-totem.webp" alt="Devant l'école supérieure de management" loading="lazy"/><figcaption>Devant l'école supérieure de management</figcaption></figure>
+<figure class="g-d irv" data-d="3"><img src="/assets/cours-groupe-escalier.webp" alt="Sur les marches de la BGFI Business School" loading="lazy"/><figcaption>Sur les marches de la BGFI Business School</figcaption></figure>
+<figure class="g-e irv" data-d="4"><img src="/assets/cours-groupe-plaid.webp" alt="L'expert entouré des participants" loading="lazy"/><figcaption>L'expert entouré des participants</figcaption></figure>
+<figure class="g-f irv" data-d="5"><img src="/assets/cours-groupe-7.webp" alt="Une cohorte de décideurs en fonction" loading="lazy"/><figcaption>Une cohorte de décideurs en fonction</figcaption></figure>
+<figure class="g-g irv" data-d="6"><img src="/assets/cours-bbs-totem.webp" alt="L'expert international devant le totem BBS" loading="lazy"/><figcaption>L'expert international devant le totem BBS</figcaption></figure>
+<figure class="g-c irv" data-d="7"><img src="/assets/portrait-veste.webp" alt="Armand Gaetan NGUETI — l'expert international" loading="lazy"/><figcaption>Armand Gaetan NGUETI — l'expert international</figcaption></figure>
+</div>
+    <div class="sig rv">
+      <div class="line"></div>
+      <b>L'équipe de communication stratégique</b>
+      <i>de l'expert international Armand Gaetan NGUETI</i>
+      <span>Libreville · Juillet 2026</span>
+      <div class="line"></div>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <div class="brand"><img src="/assets/4d152d60abdc.webp" alt="BBS"/><div>BGFI Business School<br/>L'école supérieure de management</div></div>
-  <p class="note">Éditorial rédigé sur la base du syllabus officiel du cours (BGFI Business School, format LMD, année académique 2026-2027), de la lettre d'invitation de la Direction Générale de BBS et de la documentation publique relative au Groupe BGFIBank et à son école. © 2026 — Tous droits réservés.</p>
+  <div class="brand"><img src="/assets/bbs-logo.webp" alt="BGFI Business School"/><div>BGFI Business School<br/>L&#39;école supérieure de management</div></div>
+  <p class="note">Éditorial établi sur la base du syllabus officiel du cours (BGFI Business School, format LMD, année académique 2026-2027), de la lettre d'invitation de la Direction Générale de BBS, des photographies officielles de la session de juillet 2026 et de sources publiques : communiqués Afreximbank/PAPSS (juillet 2026), travaux de la South African Reserve Bank (Project Khokha, Project Dunbar), avant-projet de loi marocain n° 42-25, publications FMI et BRI. © 2026 — L'équipe de communication stratégique d'Armand Gaetan NGUETI. Tous droits réservés.</p>
 </footer>
 
+<div id="lightbox"><img alt=""/><div class="cap"></div></div>
 <script>
 // barre de progression
 const pbar=document.getElementById('pbar');
-addEventListener('scroll',()=>{const h=document.documentElement;pbar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
-// reveal on scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.14});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-// halo suivant la souris sur les cartes de faits
-document.querySelectorAll('.fact').forEach(c=>c.addEventListener('mousemove',ev=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(ev.clientX-r.left)+'px');c.style.setProperty('--my',(ev.clientY-r.top)+'px');}));
+if(pbar){addEventListener('scroll',()=>{const h=document.documentElement;pbar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});}
+// reveals (texte + images) avec stagger
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
+  const d=e.target.dataset.d||0; setTimeout(()=>e.target.classList.add('on'), d*90); io.unobserve(e.target);}}),{threshold:.13});
+document.querySelectorAll('.rv,.irv').forEach(el=>io.observe(el));
+// parallaxe hero
+const hv=document.querySelector('.hero-visual');
+if(hv){addEventListener('mousemove',e=>{
+  const cx=(e.clientX/innerWidth-.5), cy=(e.clientY/innerHeight-.5);
+  document.querySelectorAll('.plx').forEach(el=>{
+    const d=parseFloat(el.dataset.depth||10);
+    el.style.transform=`translate(${cx*d}px, ${cy*d}px)`;});
+  document.documentElement.style.setProperty('--ax',(50+cx*30)+'%');
+  document.documentElement.style.setProperty('--ay',(30+cy*30)+'%');
+},{passive:true});}
+// tilt 3D cartes jours
+document.querySelectorAll('.day').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();
+    const rx=((e.clientY-r.top)/r.height-.5)*-9, ry=((e.clientX-r.left)/r.width-.5)*9;
+    c.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;});
+  c.addEventListener('mouseleave',()=>{c.style.transform='';});
+});
+// lightbox
+const lb=document.getElementById('lightbox');
+if(lb){const lbi=lb.querySelector('img'), lbc=lb.querySelector('.cap');
+document.querySelectorAll('.gal figure').forEach(f=>f.addEventListener('click',()=>{
+  lbi.src=f.querySelector('img').src; lbc.textContent=f.querySelector('figcaption')?.textContent||'';
+  lb.classList.add('open');}));
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open');});}
 </script>
 </body>
 </html>
