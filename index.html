@@ -242,13 +242,41 @@ footer .note{max-width:880px;margin:0 auto;font-size:.7rem;line-height:1.85;colo
 .vring::before{content:"";position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold)}
 .vport{position:absolute;inset:0;border-radius:50%;overflow:hidden;border:2px solid rgba(232,199,102,.55);
   box-shadow:0 36px 80px rgba(0,0,0,.65), 0 0 60px rgba(31,78,140,.4);animation:rise 1.3s cubic-bezier(.2,.8,.2,1) both}
-.vport img{width:100%;height:100%;object-fit:cover}
+.vport img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
 .foot{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;align-items:center;gap:.9rem;padding:1.1rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);background:linear-gradient(transparent,rgba(5,10,24,.8))}
 .foot img{width:32px;height:32px;border-radius:8px;background:#fff;padding:2px}
+
+/* ===== AJOUTS — accueil plus dynamique en 3D & à l'infini ===== */
+/* particules dorées, ascension infinie */
+.particles{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.particles i{position:absolute;bottom:-16px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--gold2),var(--gold));
+  box-shadow:0 0 8px rgba(232,199,102,.55);opacity:0;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(0) scale(.5);opacity:0}8%{opacity:.55}88%{opacity:.28}100%{transform:translateY(-116vh) scale(1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.particles{display:none}}
+
+/* anneau contrarotatif + scène 3D interactive */
+.vring2{position:absolute;inset:-9%;border-radius:50%;border:1px dashed rgba(147,163,191,.24);animation:spin 68s linear infinite reverse}
+.vwrap{transform-style:preserve-3d;transition:transform .18s ease-out}
+.coin-scene.vcoin{position:absolute;left:auto;right:-2%;top:-2%;z-index:3}
+
+/* ruban défilant à l'infini */
+.marquee{position:relative;overflow:hidden;padding:1rem 0;margin-bottom:3rem;
+  border-top:1px solid rgba(201,162,39,.22);border-bottom:1px solid rgba(201,162,39,.22);
+  background:linear-gradient(90deg,rgba(13,24,48,.6),rgba(18,48,85,.4),rgba(13,24,48,.6));
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marquee .track{display:inline-flex;align-items:center;white-space:nowrap;will-change:transform;animation:marq 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee .track b{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--champ);padding:0 1.4rem;display:inline-flex;align-items:center;gap:1.4rem}
+.marquee .track b::after{content:"\25C6";color:var(--gold);font-size:.55rem}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none}}
 </style>
 </head>
 <body>
 <div class="bg"></div>
+<div class="particles" aria-hidden="true"></div>
 <main class="wrap">
   <section>
     <span class="kicker">Éditorial &middot; Editorial</span>
@@ -261,12 +289,34 @@ footer .note{max-width:880px;margin:0 auto;font-size:.7rem;line-height:1.85;colo
     </div>
   </section>
   <section class="visual">
-    <div class="vwrap">
-      <div class="vhalo"></div><div class="vring"></div>
+    <div class="vwrap" id="vwrap">
+      <div class="vhalo"></div><div class="vring2"></div><div class="vring"></div>
       <div class="vport"><img src="/assets/portrait-cercle.webp" alt="Armand Gaetan NGUETI"/></div>
+      <div class="coin-scene vcoin"><div class="coin"><div class="edge"></div><div class="face front">&#8355;</div><div class="face back">&#9672;</div></div></div>
     </div>
   </section>
 </main>
+<div class="marquee" aria-hidden="true"><div class="track">
+<b>Délégué T20 &middot; G20 2025</b><b>Président Afrique &middot; Government Blockchain Association</b><b>Fondateur &amp; CEO &middot; UBTS International (USA)</b><b>1<sup>er</sup> consultant certifié BMM d'Afrique</b><b>Inventeur de CAMTRADE PASS</b><b>Coordinateur AfriDES &middot; CEEAC</b><b>Microsoft Certified Trainer à 24 ans</b>
+<b>Délégué T20 &middot; G20 2025</b><b>Président Afrique &middot; Government Blockchain Association</b><b>Fondateur &amp; CEO &middot; UBTS International (USA)</b><b>1<sup>er</sup> consultant certifié BMM d'Afrique</b><b>Inventeur de CAMTRADE PASS</b><b>Coordinateur AfriDES &middot; CEEAC</b><b>Microsoft Certified Trainer à 24 ans</b>
+</div></div>
 <div class="foot"><img src="/assets/bbs-logo.webp" alt="BGFI Business School"/><span>BGFI Business School &middot; Libreville 2026</span></div>
+<script>
+// particules dorées — ascension infinie
+const pf=document.querySelector('.particles');
+if(pf && !matchMedia('(prefers-reduced-motion:reduce)').matches){
+  for(let i=0;i<24;i++){const s=document.createElement('i');const sz=2+Math.random()*4;
+    s.style.left=(Math.random()*100)+'%';s.style.width=s.style.height=sz+'px';
+    s.style.animationDuration=(15+Math.random()*16)+'s';
+    s.style.animationDelay=(-Math.random()*26)+'s';pf.appendChild(s);}
+}
+// scène portrait — rotation 3D interactive à la souris
+const vw=document.getElementById('vwrap');
+if(vw && !matchMedia('(prefers-reduced-motion:reduce)').matches){
+  addEventListener('mousemove',e=>{const cx=(e.clientX/innerWidth-.5), cy=(e.clientY/innerHeight-.5);
+    vw.style.transform=`rotateY(${cx*13}deg) rotateX(${-cy*13}deg)`;},{passive:true});
+  addEventListener('mouseleave',()=>{vw.style.transform='';});
+}
+</script>
 </body>
 </html>

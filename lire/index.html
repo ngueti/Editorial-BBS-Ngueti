@@ -68,7 +68,7 @@ img{max-width:100%;display:block}
 .hero-portrait{right:10vw;bottom:12vh;width:27vw;min-width:340px;max-width:520px;aspect-ratio:1;border-radius:50%;overflow:hidden;
   border:2px solid rgba(232,199,102,.55);box-shadow:0 40px 90px rgba(0,0,0,.65), 0 0 70px rgba(31,78,140,.4), inset 0 0 40px rgba(0,0,0,.3);
   animation:rise 1.4s cubic-bezier(.2,.8,.2,1) both .15s}
-.hero-portrait img{width:100%;height:100%;object-fit:cover}
+.hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
 .coin-scene{left:44%;top:11%;width:140px;height:140px;perspective:900px;animation:floaty 6s ease-in-out infinite}
 .coin{position:absolute;inset:0;transform-style:preserve-3d;animation:coin-spin 9s linear infinite}
 .coin .face{position:absolute;inset:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -134,7 +134,7 @@ section{position:relative;padding:6.5rem 6vw}
 /* ---------- galeries + lightbox ---------- */
 .gal{display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem;margin-top:2.4rem}
 .gal figure{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--gbord);box-shadow:0 24px 50px rgba(0,0,0,.45);cursor:zoom-in;background:var(--navy)}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.gal img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)}
 .gal figure:hover img{transform:scale(1.07)}
 .gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:2.4rem 1.15rem .95rem;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;
   background:linear-gradient(transparent,rgba(5,10,24,.94));transform:translateY(8px);opacity:.85;transition:all .5s}
@@ -219,6 +219,55 @@ footer .brand{display:flex;justify-content:center;align-items:center;gap:1rem;ma
 footer .brand img{width:54px;height:54px;border-radius:12px;background:#fff;padding:4px}
 footer .brand div{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);text-align:left}
 footer .note{max-width:880px;margin:0 auto;font-size:.7rem;line-height:1.85;color:#5F6E8C;text-align:center}
+
+/* ===== AJOUTS — dynamisme 3D & mouvement infini ===== */
+/* particules dorées, ascension infinie */
+.particles{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.particles i{position:absolute;bottom:-16px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--gold2),var(--gold));
+  box-shadow:0 0 8px rgba(232,199,102,.55);opacity:0;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(0) scale(.5);opacity:0}8%{opacity:.55}88%{opacity:.28}100%{transform:translateY(-116vh) scale(1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.particles{display:none}}
+
+/* ruban défilant à l'infini */
+.marquee{position:relative;overflow:hidden;padding:1.1rem 0;
+  border-top:1px solid rgba(201,162,39,.22);border-bottom:1px solid rgba(201,162,39,.22);
+  background:linear-gradient(90deg,rgba(13,24,48,.6),rgba(18,48,85,.4),rgba(13,24,48,.6));
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marquee .track{display:inline-flex;align-items:center;white-space:nowrap;will-change:transform;animation:marq 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.marquee .track b{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:600;color:var(--champ);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
+.marquee .track b::after{content:"\25C6";color:var(--gold);font-size:.55rem}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none}}
+
+/* portrait de l'expert — présentation dense */
+.xpert{display:grid;grid-template-columns:1fr;gap:3rem;align-items:start}
+@media(min-width:960px){.xpert{grid-template-columns:.82fr 1.18fr}}
+.xphoto{position:relative;perspective:1100px}
+.xphoto .ph{border-radius:22px;overflow:hidden;transform:rotateY(6deg) rotateX(2deg);transform-style:preserve-3d;
+  box-shadow:-28px 45px 90px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);transition:transform .8s ease}
+.xphoto:hover .ph{transform:rotateY(1deg) rotateX(0)}
+.xphoto .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 16%}
+.xphoto::before{content:"";position:absolute;inset:8% 10% -6% -5%;border:1px solid rgba(201,162,39,.5);border-radius:26px;transform:translateZ(-60px)}
+.xphoto .xname{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),#a3801f);color:#171100;
+  font-size:.64rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:.6rem 1.05rem;border-radius:10px;box-shadow:0 14px 30px rgba(0,0,0,.5);white-space:nowrap}
+.xlead{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,2.1vw,1.62rem);font-style:italic;color:var(--champ);line-height:1.42;margin-bottom:1.3rem}
+.xstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:.85rem;margin:2rem 0 .4rem;perspective:1200px}
+.xstat{background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--gbord);border-radius:14px;padding:1rem 1.1rem;
+  transform-style:preserve-3d;transition:transform .5s ease,border-color .5s;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.xstat:hover{border-color:var(--gbord-gold)}
+.xstat b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold2);font-weight:700;line-height:1.05;transform:translateZ(14px)}
+.xstat span{display:block;font-size:.68rem;color:var(--mut);letter-spacing:.02em;line-height:1.45;margin-top:.35rem;transform:translateZ(8px)}
+.mandates{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1rem;margin-top:2.6rem}
+.mandate{position:relative;border-radius:16px;padding:1.2rem 1.35rem 1.2rem 1.55rem;background:linear-gradient(160deg,var(--glass2),rgba(255,255,255,.02));
+  backdrop-filter:blur(12px);border:1px solid var(--gbord);transition:border-color .4s,transform .4s}
+.mandate:hover{border-color:var(--gbord-gold);transform:translateY(-5px)}
+.mandate::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:linear-gradient(var(--gold),transparent)}
+.mandate .my{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);font-weight:700}
+.mandate b{display:block;color:#fff;font-size:.96rem;margin:.4rem 0 .32rem;font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.25}
+.mandate span{font-size:.77rem;line-height:1.6;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -229,6 +278,7 @@ footer .note{max-width:880px;margin:0 auto;font-size:.7rem;line-height:1.85;colo
 </nav>
 <div id="pbar"></div>
 <div class="bg"></div>
+<div class="particles" aria-hidden="true"></div>
 
 <header class="hero">
   <div class="hero-visual">
@@ -350,9 +400,47 @@ footer .note{max-width:880px;margin:0 auto;font-size:.7rem;line-height:1.85;colo
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true"><div class="track">
+<b>Délégué T20 &middot; Sommet du G20 2025</b><b>Président Afrique &middot; Government Blockchain Association</b><b>Fondateur &amp; CEO &middot; UBTS International (USA)</b><b>1<sup>er</sup> &amp; unique consultant certifié BMM d'Afrique</b><b>Inventeur de CAMTRADE PASS</b><b>Coordinateur AfriDES &middot; CEEAC — 11 pays</b><b>Microsoft Certified Trainer à 24 ans &middot; Bangalore</b><b>Doctorant &middot; Université Paul-Valéry Montpellier 3</b>
+<b>Délégué T20 &middot; Sommet du G20 2025</b><b>Président Afrique &middot; Government Blockchain Association</b><b>Fondateur &amp; CEO &middot; UBTS International (USA)</b><b>1<sup>er</sup> &amp; unique consultant certifié BMM d'Afrique</b><b>Inventeur de CAMTRADE PASS</b><b>Coordinateur AfriDES &middot; CEEAC — 11 pays</b><b>Microsoft Certified Trainer à 24 ans &middot; Bangalore</b><b>Doctorant &middot; Université Paul-Valéry Montpellier 3</b>
+</div></div>
+
+<section>
+  <div class="container">
+    <div class="sec-head rv"><span class="sec-num">06</span><h2>Le portrait de l'expert : <span class="gold">Armand Gaetan NGUETI</span></h2></div>
+    <div class="lead-rule"></div>
+    <div class="xpert">
+      <div class="xphoto rv">
+        <div class="ph"><img src="/assets/portrait-bleu.webp" alt="Armand Gaetan NGUETI — expert international en actifs numériques" loading="lazy"/></div>
+        <div class="xname">Armand Gaetan NGUETI &middot; Architecte de la transformation numérique</div>
+      </div>
+      <div class="rv">
+        <p class="xlead">« De Douala à Washington, de Bangalore à Johannesburg : un parcours entièrement tendu vers une seule ambition — que l'Afrique devienne l'opératrice, et non plus la spectatrice, de son destin numérique. »</p>
+        <div class="prose"><p>Armand Gaetan NGUETI, 37 ans, se présente comme un architecte des initiatives de transformation numérique, chercheur en management et conseiller tactique en politique TradeTech globale-locale. Son impact sur la stratégie économique internationale a été confirmé en 2025 par sa nomination comme délégué T20 lors du sommet du G20 en Afrique du Sud. À ce niveau, et comme coordinateur exécutif pour l'Afrique centrale du Sommet africain de l'économie numérique (AfriDES), il a soutenu la présidence sud-africaine du G20 et pilote la coordination stratégique à travers les onze pays de la CEEAC.</p><p>Fondateur et CEO global d'Universal Broadband &amp; Technology Services International Corp (USA), il dirige un think-tank qui réinvente les modèles économiques des plateformes numériques dans les communications électroniques et l'agriculture intelligente — des écosystèmes Wi-Fi intelligents déployés avec MTN Cameroun au Passeport Digital Agritech Afrique (UAA-DP), qui confère, par la blockchain, une identité numérique aux produits agricoles, de la ferme au consommateur. Stratège de la Sovereign AI Alliance via PIPRA Solutions, dont il préside la région Afrique, il défend « l'IA endogène » : souveraineté des données, IA vernaculaire, résilience stratégique. Il est aussi l'inventeur de CAMTRADE PASS — blockchain, IA et IoT au service du label « Made in Cameroun ».</p><p>Chercheur exécutif en sciences de gestion à l'Université Paul-Valéry Montpellier 3, il relie rigueur académique et innovation industrielle. Microsoft Certified Trainer à seulement 24 ans, formé à Bangalore, il détient une distinction sans équivalent : premier et, à ce jour, unique consultant au monde certifié au Modèle de Maturité Blockchain (BMM) originaire d'Afrique. Basé entre Atlanta, Washington, Lagos, Bangalore et Hyderabad, il construit sans relâche les alliances qui font de ce cours de Libreville bien plus qu'une intervention ponctuelle : un jalon.</p></div>
+        <div class="xstats">
+          <div class="xstat tilt rv" data-d="0"><b>T20 · G20</b><span>Délégué au sommet, Afrique du Sud 2025</span></div>
+          <div class="xstat tilt rv" data-d="1"><b>1<sup>er</sup></b><span>&amp; unique consultant certifié BMM d'Afrique</span></div>
+          <div class="xstat tilt rv" data-d="2"><b>11 pays</b><span>Coordination AfriDES · région CEEAC</span></div>
+          <div class="xstat tilt rv" data-d="3"><b>24 ans</b><span>Microsoft Certified Trainer, Bangalore</span></div>
+          <div class="xstat tilt rv" data-d="4"><b>2018</b><span>Président Afrique de la GBA, depuis</span></div>
+          <div class="xstat tilt rv" data-d="5"><b>USA</b><span>Fondateur &amp; CEO, UBTS International Corp</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mandates">
+      <div class="mandate rv" data-d="0"><span class="my">2025 · Gouvernance mondiale</span><b>Délégué T20 — Think20</b><span>Groupe d'engagement du G20, en soutien à la présidence sud-africaine du sommet.</span></div>
+      <div class="mandate rv" data-d="1"><span class="my">Depuis 2018 · Leadership continental</span><b>Président &amp; Africa Chairperson — GBA</b><span>Direction de la Government Blockchain Association à travers tout le continent africain.</span></div>
+      <div class="mandate rv" data-d="2"><span class="my">Depuis 2024 · Sécurité alimentaire</span><b>Président du groupe chaîne d'approvisionnement — GBA</b><span>Premier leader africain à ce poste : traçabilité, conformité et standards mondiaux.</span></div>
+      <div class="mandate rv" data-d="3"><span class="my">Depuis 2019 · Entrepreneuriat</span><b>Fondateur &amp; CEO — UBTS International Corp</b><span>Think-tank et opérateur technologique, grande région d'Atlanta (États-Unis).</span></div>
+      <div class="mandate rv" data-d="4"><span class="my">Depuis 2025 · Investissement</span><b>Fondateur, Président &amp; CEO — PIPRA Africa Holdings</b><span>Blockchain, IA et IoT au service de la confiance et de l'intégration économique africaine.</span></div>
+      <div class="mandate rv" data-d="5"><span class="my">Depuis 2024 · Innovation souveraine</span><b>Inventeur de CAMTRADE PASS — PIPRA Cameroun S.A.</b><span>Traçabilité de bout en bout et inclusion financière des producteurs « Made in Cameroun ».</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="gilded">
   <div class="container">
-    <div class="sec-head rv"><span class="sec-num">06</span><h2>L'appel : à toutes les parties prenantes du continent</h2></div>
+    <div class="sec-head rv"><span class="sec-num">07</span><h2>L'appel : à toutes les parties prenantes du continent</h2></div>
     <div class="lead-rule"></div>
     <div class="container split">
       <div class="prose rv"><p>Au terme de la semaine, l'expert international Armand Gaetan NGUETI — délégué T20 au sommet du G20 en Afrique du Sud, président Afrique de la Government Blockchain Association, premier et unique consultant certifié BMM du continent — n'a pas conclu par un satisfecit. Il a conclu par une interpellation. Son équipe de communication stratégique la relaie ici, fidèlement, à l'attention de toutes les parties prenantes d'Afrique :</p></div>
@@ -406,13 +494,21 @@ if(hv){addEventListener('mousemove',e=>{
   document.documentElement.style.setProperty('--ax',(50+cx*30)+'%');
   document.documentElement.style.setProperty('--ay',(30+cy*30)+'%');
 },{passive:true});}
-// tilt 3D cartes jours
-document.querySelectorAll('.day').forEach(c=>{
+// tilt 3D cartes jours + statistiques expert
+document.querySelectorAll('.day,.tilt').forEach(c=>{
   c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();
     const rx=((e.clientY-r.top)/r.height-.5)*-9, ry=((e.clientX-r.left)/r.width-.5)*9;
     c.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;});
   c.addEventListener('mouseleave',()=>{c.style.transform='';});
 });
+// particules dorées — ascension infinie
+const pf=document.querySelector('.particles');
+if(pf && !matchMedia('(prefers-reduced-motion:reduce)').matches){
+  for(let i=0;i<26;i++){const s=document.createElement('i');const sz=2+Math.random()*4;
+    s.style.left=(Math.random()*100)+'%';s.style.width=s.style.height=sz+'px';
+    s.style.animationDuration=(15+Math.random()*16)+'s';
+    s.style.animationDelay=(-Math.random()*26)+'s';pf.appendChild(s);}
+}
 // lightbox
 const lb=document.getElementById('lightbox');
 if(lb){const lbi=lb.querySelector('img'), lbc=lb.querySelector('.cap');
