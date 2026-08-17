@@ -28,6 +28,7 @@
           <option name="screenY" value="1280" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+<<<<<<< Updated upstream
           <option name="api" value="33" />
           <option name="brand" value="Infinix" />
           <option name="codename" value="Infinix-X6525" />
@@ -40,6 +41,8 @@
           <option name="screenY" value="1612" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+=======
+>>>>>>> Stashed changes
           <option name="api" value="34" />
           <option name="brand" value="OnePlus" />
           <option name="codename" value="OP535DL1" />
@@ -172,6 +175,7 @@
           <option name="screenY" value="1612" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+<<<<<<< Updated upstream
           <option name="api" value="31" />
           <option name="brand" value="TECNO" />
           <option name="codename" value="TECNO-BF7" />
@@ -184,6 +188,8 @@
           <option name="screenY" value="1612" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+=======
+>>>>>>> Stashed changes
           <option name="api" value="33" />
           <option name="brand" value="TECNO" />
           <option name="codename" value="TECNO-BG6" />
@@ -558,6 +564,7 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
+<<<<<<< Updated upstream
           <option name="codename" value="a54xue" />
           <option name="id" value="a54xue" />
           <option name="labId" value="google" />
@@ -570,6 +577,8 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
+=======
+>>>>>>> Stashed changes
           <option name="codename" value="a55xzh" />
           <option name="id" value="a55xzh" />
           <option name="labId" value="google" />
@@ -690,6 +699,7 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
+<<<<<<< Updated upstream
           <option name="codename" value="b0qxxx" />
           <option name="id" value="b0qxxx" />
           <option name="labId" value="google" />
@@ -702,6 +712,8 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
+=======
+>>>>>>> Stashed changes
           <option name="codename" value="b4qsqw" />
           <option name="id" value="b4qsqw" />
           <option name="labId" value="google" />
@@ -724,6 +736,7 @@
           <option name="screenY" value="720" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+<<<<<<< Updated upstream
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
           <option name="codename" value="b5qxeea" />
@@ -736,6 +749,8 @@
           <option name="screenY" value="720" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+=======
+>>>>>>> Stashed changes
           <option name="api" value="34" />
           <option name="brand" value="samsung" />
           <option name="codename" value="b6q" />
@@ -863,6 +878,7 @@
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
           <option name="api" value="34" />
+<<<<<<< Updated upstream
           <option name="brand" value="motorola" />
           <option name="codename" value="cancun" />
           <option name="id" value="cancun" />
@@ -875,6 +891,8 @@
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
           <option name="api" value="34" />
+=======
+>>>>>>> Stashed changes
           <option name="brand" value="google" />
           <option name="codename" value="comet" />
           <option name="id" value="comet" />
@@ -1066,6 +1084,7 @@
           <option name="screenY" value="2340" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+<<<<<<< Updated upstream
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
           <option name="codename" value="e2sksx" />
@@ -1078,6 +1097,8 @@
           <option name="screenY" value="2340" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+=======
+>>>>>>> Stashed changes
           <option name="api" value="34" />
           <option name="brand" value="samsung" />
           <option name="codename" value="e3q" />
@@ -1567,6 +1588,7 @@
           <option name="screenY" value="2340" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+<<<<<<< Updated upstream
           <option name="api" value="36" />
           <option name="brand" value="motorola" />
           <option name="codename" value="malmo" />
@@ -1579,6 +1601,8 @@
           <option name="screenY" value="2400" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+=======
+>>>>>>> Stashed changes
           <option name="api" value="34" />
           <option name="brand" value="motorola" />
           <option name="codename" value="manaus" />
@@ -1645,6 +1669,7 @@
           <option name="screenY" value="2400" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+<<<<<<< Updated upstream
           <option name="api" value="35" />
           <option name="brand" value="samsung" />
           <option name="codename" value="o1s" />
@@ -1657,6 +1682,8 @@
           <option name="screenY" value="2400" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+=======
+>>>>>>> Stashed changes
           <option name="api" value="31" />
           <option name="brand" value="google" />
           <option name="codename" value="oriole" />
@@ -1937,6 +1964,7 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
+<<<<<<< Updated upstream
           <option name="codename" value="r11qcs" />
           <option name="id" value="r11qcs" />
           <option name="labId" value="google" />
@@ -1949,6 +1977,8 @@
         <PersistentDeviceSelectionData>
           <option name="api" value="36" />
           <option name="brand" value="samsung" />
+=======
+>>>>>>> Stashed changes
           <option name="codename" value="r11s" />
           <option name="id" value="r11s" />
           <option name="labId" value="google" />
